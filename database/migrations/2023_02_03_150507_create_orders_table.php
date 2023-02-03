@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('client_firstname', 100)->nullable();
+            $table->string('client_lastname', 100)->nullable();
+            $table->string('client_address')->nullable();
+            $table->string('client_phone')->nullable();
+            $table->float('total_amount', 5, 2)->nullable();
+            $table->time('delivery_time')->nullable();
+            $table->boolean('is_delivery')->default(false);
+            $table->date('date')->nullable();
             $table->timestamps();
         });
     }
