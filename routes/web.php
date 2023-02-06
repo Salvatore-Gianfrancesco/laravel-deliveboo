@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RestaurantController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlateController;
 
@@ -31,6 +33,8 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
     Route::resource('restaurant', RestaurantController::class);
 
 });
+
+Route::resource('/orders', OrderController::class);
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -13,7 +13,7 @@ class UpdateOrderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,22 @@ class UpdateOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'client_firstname' => 'nullable|max:100',
+            'client_lastname' => 'nullable|max:100',
+            'client_address' => 'nullable',
+            'client_phone' => 'nullable|max:20',
+            'total_amount' => 'nullable',
+            'delivery_time' => 'nullable',
+            'datetime' => 'nullable'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'client_firstname.max' => 'Il nome può avere al massimo :max caratteri',
+            'client_firstname.max' => 'Il cognome può avere al massimo :max caratteri',
+            'client_phone.max' => 'Il numero di telefono può avere al massimo :max numeri'
         ];
     }
 }

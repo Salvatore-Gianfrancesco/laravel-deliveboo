@@ -15,7 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::orderByDesc('id')->get();
+        return view('orders.index', compact('orders'));
     }
 
     /**
@@ -25,7 +26,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('orders.create');
     }
 
     /**
@@ -36,7 +37,11 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        //
+        /* dd($request); */
+        $val_data = $request->validated();
+
+        $order = Order::create($val_data);
+        return to_route('orders.index')->with('message', "$order->client_firstname,$order->client_lastname added succesfully!");
     }
 
     /**
@@ -47,7 +52,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('orders.show', compact('order'));
     }
 
     /**
@@ -58,7 +63,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return view('orders.edit', compact('order'));
     }
 
     /**
@@ -70,7 +75,9 @@ class OrderController extends Controller
      */
     public function update(UpdateOrderRequest $request, Order $order)
     {
-        //
+        $val_data = $request->validated();
+        $order->update($val_data);
+        return to_route('orders.index');
     }
 
     /**
@@ -81,6 +88,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return to_route('orders.index');
     }
 }
