@@ -47,7 +47,7 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        //
+        return view('restaurant.show', compact('restaurant'));
     }
 
     /**
@@ -58,7 +58,7 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        //
+        return view('restaurant.edit', compact('restaurant'));
     }
 
     /**
