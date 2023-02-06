@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Str;
 
 class Plate extends Model
 {
@@ -13,7 +14,11 @@ class Plate extends Model
 
 
     protected $filable = ['name', 'slug', 'description', 'price', 'visibility', 'image', 'restaurant_id'];
-
+    public static function createSlug($name)
+    {
+        $plate_slug = Str::slug($name);
+        return $plate_slug;
+    }
     /**
      * Get the restaurant that owns the Plate
      *
