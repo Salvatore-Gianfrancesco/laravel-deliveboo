@@ -51,7 +51,7 @@ class PlateController extends Controller
         // dd($val_data);
         Plate::create($val_data);
 
-        return to_route('plates.index')->with('message', 'Plate added successfully');
+        return to_route('admin.plates.index')->with('message', 'Plate added successfully');
     }
 
     /**
@@ -96,7 +96,7 @@ class PlateController extends Controller
         // dd($val_data);
 
         $plate->update($val_data);
-        return to_route('plates.index')->with('message', 'Plate modified');
+        return to_route('admin.plates.index')->with('message', 'Plate modified');
     }
 
     /**

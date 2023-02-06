@@ -83,7 +83,7 @@ class RestaurantController extends Controller
 
         $restaurant->update($val_data);
 
-        return to_route('admin.restaurant.show', $restaurant->id);
+        return to_route('admin.restaurant.index', $restaurant->id);
     }
 
     /**

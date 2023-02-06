@@ -11,6 +11,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard');
+        $user = Auth::user();
+        $restaurant = Restaurant::where('id', '=', $user->id)->first();
+        return view('dashboard', compact('restaurant'));
     }
 }

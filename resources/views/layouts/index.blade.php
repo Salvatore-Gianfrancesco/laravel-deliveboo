@@ -33,69 +33,67 @@
     <div id="app">
 
 
-        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm px-5">
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="{{ __('Toggle navigation') }}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
+                    </li>
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                    @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
+                        @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('admin') }}">{{ __('Dashboard') }}</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('admin') }}">{{ __('Dashboard') }}</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                </ul>
             </div>
-        </nav> --}}
+        </nav>
 
-        {{-- <div class="container-fluid">
-            <div class="row"> --}}
-        {{-- <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="container-fluid">
+            <div class="row">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                     <div class="position-sticky pt-3 sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page"
-                                    href='{{ route('admin.restaurant.show', $restaurant) }}'>
+                                    href='{{ route('admin.restaurant.index') }}'>
                                     <span data-feather="home" class="align-text-bottom"></span>
                                     Restaurant
                                 </a>
@@ -108,46 +106,46 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('orders.index') }}">
+                                <a class="nav-link" href="{{ route('admin.orders.index') }}">
                                     <span data-feather="file" class="align-text-bottom"></span>
                                     Orders
                                 </a>
                             </li>
                         </ul>
                     </div>
-                </nav> --}}
-        <div class="dlabnav border-right">
-            <div class="dlabnav-scroll mm-active ps ps--active-y">
-                <p class="menu-title style-1"> Main Menu</p>
-                <ul class="metismenu mm-show" id="menu">
-                    <li class="mm-active"><a class="has-arrow " href="{{ route('admin.restaurant.index') }}"
-                            aria-expanded="false">
-                            <i class="fas fa-square"></i>
-                            <span class="nav-text">Restaurant</span>
-                        </a>
-                    </li>
-                    <li><a class="has-arrow " href="{{ route('admin.plates.index') }}" aria-expanded="false">
-
-                            <i class="fas fa-square"></i>
-                            <span class="nav-text">Plates</span>
-                        </a>
-                    </li>
-                    <li><a class="has-arrow " href="{{ route('admin.orders.index') }}" aria-expanded="false">
-                            <i class="fas fa-square"></i>
-
-                            <span class="nav-text">Orders</span>
-                        </a>
-                    </li>
-                </ul>
                 </nav>
-            </div>
-        </div>
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            @yield('content')
-        </main>
-        {{-- </div>
+                {{-- <div class="dlabnav border-right">
+                    <div class="dlabnav-scroll mm-active ps ps--active-y">
+                        <p class="menu-title style-1"> Main Menu</p>
+                        <ul class="metismenu mm-show" id="menu">
+                            <li class="mm-active"><a class="has-arrow " href="{{ route('admin.restaurant.index') }}"
+                                    aria-expanded="false">
+                                    <i class="fas fa-square"></i>
+                                    <span class="nav-text">Restaurant</span>
+                                </a>
+                            </li>
+                            <li><a class="has-arrow " href="{{ route('admin.plates.index') }}" aria-expanded="false">
+
+                                    <i class="fas fa-square"></i>
+                                    <span class="nav-text">Plates</span>
+                                </a>
+                            </li>
+                            <li><a class="has-arrow " href="{{ route('admin.orders.index') }}" aria-expanded="false">
+                                    <i class="fas fa-square"></i>
+
+                                    <span class="nav-text">Orders</span>
+                                </a>
+                            </li>
+                        </ul>
+                        </nav>
+                    </div>
+                </div> --}}
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                    @yield('content')
+                </main>
+                {{-- </div>
         </div> --}}
-    </div>
+            </div>
 </body>
 
 </html>

@@ -13,7 +13,7 @@ class Plate extends Model
     use HasFactory;
 
 
-    protected $filable = ['name', 'slug', 'description', 'price', 'visibility', 'image', 'restaurant_id'];
+    protected $fillable = ['name', 'slug', 'description', 'price', 'visibility', 'image', 'restaurant_id'];
     public static function createSlug($name)
     {
         $plate_slug = Str::slug($name);

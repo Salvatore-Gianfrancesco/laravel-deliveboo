@@ -3,7 +3,7 @@
 @section('content')
     <h1>Edit Plate</h1>
     @include('partials.error')
-    <form action="{{ route('admin.plates.update', $plate->slug) }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('admin.plates.update', $plate->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="mb-3">

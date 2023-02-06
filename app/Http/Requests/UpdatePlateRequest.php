@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePlateRequest extends FormRequest
@@ -24,7 +25,11 @@ class UpdatePlateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:plates,name|max:100',
+            'name' => [
+                'required',
+                Rule::unique('plates')->ignore($this->plate->id),
+                'max:100'
+            ],
             'description' => 'nullable|max:300'
         ];
     }
