@@ -108,6 +108,6 @@ class PlateController extends Controller
     public function destroy(Plate $plate)
     {
         $plate->delete();
-        return to_route('plates.index');
+        return to_route('admin.plates.index');
     }
 }
