@@ -11,7 +11,7 @@
             <p class="lead">Min. Order: {{ $restaurant->min_order }}</p>
             <p class="lead">Closing time: {{ $restaurant->closing_time }}</p>
 
-            <a class="btn btn-primary">Edit</a>
+            <a class="btn btn-primary" href="{{ route('admin.restaurant.edit', $restaurant->id) }}">Edit</a>
         </div>
     </div>
 @endsection
