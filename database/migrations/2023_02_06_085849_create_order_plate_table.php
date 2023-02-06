@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('plate_id');
             $table->foreign('plate_id')->references('id')->on('plates')->cascadeOnDelete();
 
-            $table->integer('quantity');
+            $table->integer('quantity')->default(1);
 
             $table->primary(['order_id', 'plate_id']);
         });
