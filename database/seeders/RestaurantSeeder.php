@@ -41,6 +41,12 @@ class RestaurantSeeder extends Seeder
             $new_restaurant->min_order = $faker->randomElement([5, 10, 15, 20]);
             $new_restaurant->closing_time = $faker->randomElement(['22:00:00', '23:00:00', '23:59:00']);
             $new_restaurant->save();
+
+            if ($restaurant['user_id'] == 1) {
+                $new_restaurant->type()->attach([4, 6]);
+            } else {
+                $new_restaurant->type()->attach([1, 7]);
+            }
         }
     }
 }

@@ -10,10 +10,15 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Fontsawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
 
     <!-- FontAwesome 6.2.0 CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -89,13 +94,15 @@
                     <div class="position-sticky pt-3 sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page">
+                                <a class="nav-link active" aria-current="page"
+                                    href='{{ route('admin.restaurant.show', $restaurant) }}'>
                                     <span data-feather="home" class="align-text-bottom"></span>
                                     Restaurant
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page">
+                                <a class="nav-link active" aria-current="page"
+                                    href="{{ route('admin.plates.index') }}">
                                     <span data-feather="home" class="align-text-bottom"></span>
                                     Plates
                                 </a>
