@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Restaurant;
 use App\Http\Requests\StoreRestaurantRequest;
 use App\Http\Requests\UpdateRestaurantRequest;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
@@ -17,7 +16,9 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $restaurant = Restaurant::where('id', '=', $user->id)->first();
+        return view('restaurant.show', compact('restaurant'));
     }
 
     /**
@@ -49,7 +50,6 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        return view('restaurant.show', compact('restaurant'));
     }
 
     /**

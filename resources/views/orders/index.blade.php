@@ -1,7 +1,7 @@
 @extends('layouts.index')
 @section('name')
     Orders
-    <a class="text-white btn btn-dark" href="{{ route('orders.create') }}">
+    <a class="text-white btn btn-dark" href="{{ route('admin.orders.create') }}">
         Add New Order
     </a>
 @endsection
@@ -43,9 +43,9 @@
                             <td>{{ $order->is_delivered }}</td>
                             <td>
                                 <a class="d-flex text-white p-2 my-2 bg-primary justify-content-center rounded-2"
-                                    href="{{ route('orders.show', $order->id) }}"><i class="fa-solid fa-eye"></i></a>
+                                    href="{{ route('admin.orders.show', $order->id) }}"><i class="fa-solid fa-eye"></i></a>
                                 <a class="d-flex text-white p-2 my-2 bg-secondary justify-content-center rounded-2"
-                                    href="{{ route('orders.edit', $order->id) }}"><i
+                                    href="{{ route('admin.orders.edit', $order->id) }}"><i
                                         class="fa-solid fa-pen-to-square"></i></a>
                                 <!-- Modal trigger button -->
                                 <button type="button"

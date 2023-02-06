@@ -25,13 +25,11 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('/plates', PlateController::class)->parameters([
-        'plates' => 'plate:slug'
-    ]);
+    Route::resource('plates', PlateController::class);
     Route::resource('restaurant', RestaurantController::class);
+    Route::resource('orders', OrderController::class);
 });
 
-Route::resource('/orders', OrderController::class);
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

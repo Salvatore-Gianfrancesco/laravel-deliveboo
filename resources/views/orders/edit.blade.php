@@ -2,7 +2,7 @@
 
 @section('content')
     @include('partials.errors')
-    <form action="{{ route('orders.update', $order->id) }}" method="post">
+    <form action="{{ route('admin.orders.update', $order->id) }}" method="post">
         @csrf
         @method('PUT')
         <div class="mb-3">

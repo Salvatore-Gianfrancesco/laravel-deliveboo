@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Plate;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -15,7 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::orderByDesc('id')->get();
+        $orders = Order::all();
         return view('orders.index', compact('orders'));
     }
 
@@ -41,7 +43,7 @@ class OrderController extends Controller
         $val_data = $request->validated();
 
         $order = Order::create($val_data);
-        return to_route('orders.index')->with('message', "$order->client_firstname,$order->client_lastname added succesfully!");
+        return to_route('admin.orders.index')->with('message', "$order->client_firstname,$order->client_lastname added succesfully!");
     }
 
     /**
@@ -77,7 +79,7 @@ class OrderController extends Controller
     {
         $val_data = $request->validated();
         $order->update($val_data);
-        return to_route('orders.index');
+        return to_route('admin.orders.index');
     }
 
     /**

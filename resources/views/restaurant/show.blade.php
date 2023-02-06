@@ -48,7 +48,8 @@
                             <!-- title -->
                             <h1>{{ $restaurant->company_name }}</h1>
                             <!-- button -->
-                            <a class="btn btn-lg btn-soft" href="#">Edit Restaurant</a>
+                            <a class="btn btn-lg btn-soft" href="{{ route('admin.restaurant.edit', $restaurant->id) }}">Edit
+                                Restaurant</a>
                         </div>
                     </div>
                 </div>

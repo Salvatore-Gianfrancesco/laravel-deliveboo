@@ -120,7 +120,7 @@
             <div class="dlabnav-scroll mm-active ps ps--active-y">
                 <p class="menu-title style-1"> Main Menu</p>
                 <ul class="metismenu mm-show" id="menu">
-                    <li class="mm-active"><a class="has-arrow " href="{{ route('admin.restaurant.show', $restaurant) }}"
+                    <li class="mm-active"><a class="has-arrow " href="{{ route('admin.restaurant.index') }}"
                             aria-expanded="false">
                             <i class="fas fa-square"></i>
                             <span class="nav-text">Restaurant</span>
@@ -129,10 +129,10 @@
                     <li><a class="has-arrow " href="{{ route('admin.plates.index') }}" aria-expanded="false">
 
                             <i class="fas fa-square"></i>
-                            <span class="nav-text">Food</span>
+                            <span class="nav-text">Plates</span>
                         </a>
                     </li>
-                    <li><a class="has-arrow " href="" aria-expanded="false">
+                    <li><a class="has-arrow " href="{{ route('admin.orders.index') }}" aria-expanded="false">
                             <i class="fas fa-square"></i>
 
                             <span class="nav-text">Orders</span>
@@ -140,15 +140,6 @@
                     </li>
                 </ul>
                 </nav>
-
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                    <div
-                        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-5 pb-2 mb-3 border-bottom">
-                        <h1>@yield('name')</h1>
-                    </div>
-                    @yield('content')
-                </main>
-
             </div>
         </div>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
