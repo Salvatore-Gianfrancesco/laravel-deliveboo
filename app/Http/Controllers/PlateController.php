@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Plate;
 use App\Http\Requests\StorePlateRequest;
 use App\Http\Requests\UpdatePlateRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PlateController extends Controller
 {
@@ -15,7 +16,8 @@ class PlateController extends Controller
      */
     public function index()
     {
-        //
+        $plates = Plate::all();
+        return view('plates.index', compact('plates'));
     }
 
     /**
@@ -25,7 +27,7 @@ class PlateController extends Controller
      */
     public function create()
     {
-        //
+        return view('plates.create');
     }
 
     /**
@@ -36,7 +38,18 @@ class PlateController extends Controller
      */
     public function store(StorePlateRequest $request)
     {
-        //
+        $val_data = $request->validated();
+        // if ($request->hasFile('cover_image')) {
+
+        //     $cover_image = Storage::put('uploads', $val_data['cover_image']);
+        //     $val_data['cover_image'] = $cover_image;
+        // }
+        $plate_slug = Plate::createSlug($val_data['name']);
+        $val_data['slug'] = $plate_slug;
+        // dd($val_data);
+        $plate = Plate::create($val_data);
+
+        return to_route('plates.index')->with('message', 'Plate added successfully');
     }
 
     /**
