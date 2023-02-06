@@ -24,8 +24,8 @@
                         <th>Phone</th>
                         <th>Total Amount</th>
                         <th>Delivery Time</th>
-                        <th>Is Delivered</th>
                         <th>Date Time</th>
+                        <th>Is Delivered</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -39,13 +39,14 @@
                             <td>{{ $order->client_phone }}</td>
                             <td>{{ $order->total_amount }}</td>
                             <td>{{ $order->delivery_time }}</td>
+                            <td>{{ $order->created_at }}</td>
                             <td>{{ $order->is_delivered }}</td>
-                            <td>{{ $order->datetime }}</td>
                             <td>
                                 <a class="d-flex text-white p-2 my-2 bg-primary justify-content-center rounded-2"
-                                    href=""><i class="fa-solid fa-eye"></i></a>
+                                    href="{{ route('orders.show', $order->id) }}"><i class="fa-solid fa-eye"></i></a>
                                 <a class="d-flex text-white p-2 my-2 bg-secondary justify-content-center rounded-2"
-                                    href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                                    href="{{ route('orders.edit', $order->id) }}"><i
+                                        class="fa-solid fa-pen-to-square"></i></a>
                                 <a class="d-flex text-white p-2 my-2 bg-danger justify-content-center rounded-2"
                                     href=""><i class="fa-solid fa-trash"></i></a>
                             </td>
