@@ -1,0 +1,122 @@
+@import '~bootstrap/scss/bootstrap';
+
+main {
+    .btn-soft {
+        background-color: $primary_soft;
+        border-radius: 20px;
+
+        &:hover {
+            background-color: $primary_soft;
+
+            color: $light;
+        }
+    }
+
+    .numb {
+        color: $primary;
+    }
+
+    #banner {
+        height: 400px;
+        position: relative;
+        background-image: url('../assets/img/plate-gdb96679aa_1920.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-bottom: 5rem;
+
+        .info {
+            background-color: rgba(0, 0, 0, 0.465);
+            height: 100%;
+        }
+    }
+
+
+    .marketing {
+
+        .food {
+            margin-bottom: 5rem;
+        }
+
+        .card {
+            border: 1px solid $primary;
+            width: 100%;
+            height: 100%;
+
+            &:hover {
+                border: 1px solid transparent;
+                box-shadow: 0 0 10px $primary;
+            }
+
+            .icon {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                object-fit: cover;
+                object-position: right;
+            }
+
+            p {
+                height: 100px;
+            }
+
+        }
+
+        hr {
+            color: $primary;
+            height: 5px;
+            background-color: $primary;
+            border-radius: 2px;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .view_all {
+
+            h4,
+            a {
+                color: $primary;
+            }
+
+            a {
+                text-decoration: none;
+            }
+        }
+
+        .bill {
+            width: 150px;
+            margin-bottom: 1rem;
+        }
+
+        #view_orders {
+            .line {
+                color: black;
+                height: 1px;
+                margin-bottom: 1rem;
+            }
+
+            .card {
+                border: 1px solid $primary;
+                width: 100%;
+                height: 100%;
+
+                &:hover {
+                    border: 1px solid transparent;
+                    box-shadow: 0 0 10px $primary;
+                }
+            }
+
+            .order {
+                img {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    border: 2px solid $primary;
+                    padding: 0.2rem;
+                    object-fit: cover;
+                }
+
+            }
+        }
+    }
+}

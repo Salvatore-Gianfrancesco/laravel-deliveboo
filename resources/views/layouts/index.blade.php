@@ -26,7 +26,7 @@
     <div id="app">
 
 
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -79,11 +79,11 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
-        <div class="container-fluid">
-            <div class="row">
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        {{-- <div class="container-fluid">
+            <div class="row"> --}}
+        {{-- <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                     <div class="position-sticky pt-3 sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
@@ -108,13 +108,37 @@
                             </li>
                         </ul>
                     </div>
-                </nav>
+                </nav> --}}
+        <div class="dlabnav border-right">
+            <div class="dlabnav-scroll mm-active ps ps--active-y">
+                <p class="menu-title style-1"> Main Menu</p>
+                <ul class="metismenu mm-show" id="menu">
+                    <li class="mm-active"><a class="has-arrow " href="{{ route('admin.restaurant.show', $restaurant) }}"
+                            aria-expanded="false">
+                            <i class="fas fa-square"></i>
+                            <span class="nav-text">Restaurant</span>
+                        </a>
+                    </li>
+                    <li><a class="has-arrow " href="{{ route('admin.plates.index') }}" aria-expanded="false">
 
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                    @yield('content')
-                </main>
+                            <i class="fas fa-square"></i>
+                            <span class="nav-text">Food</span>
+                        </a>
+                    </li>
+                    <li><a class="has-arrow " href="" aria-expanded="false">
+                            <i class="fas fa-square"></i>
+
+                            <span class="nav-text">Orders</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            @yield('content')
+        </main>
+        {{-- </div>
+        </div> --}}
     </div>
 </body>
 
