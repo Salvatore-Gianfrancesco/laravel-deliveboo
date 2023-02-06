@@ -60,7 +60,7 @@ class PlateController extends Controller
      */
     public function show(Plate $plate)
     {
-        //
+        return view('plates.show', compact('plate'));
     }
 
     /**
@@ -71,7 +71,7 @@ class PlateController extends Controller
      */
     public function edit(Plate $plate)
     {
-        //
+        return view('plates.edit', compact('plate'));
     }
 
     /**
@@ -83,7 +83,18 @@ class PlateController extends Controller
      */
     public function update(UpdatePlateRequest $request, Plate $plate)
     {
-        //
+        $val_data = $request->validated();
+        // if ($request->hasFile('cover_image')) {
+
+        //     $cover_image = Storage::put('uploads', $val_data['cover_image']);
+        //     $val_data['cover_image'] = $cover_image;
+        // }
+        $plate_slug = Plate::createSlug($val_data['name']);
+        $val_data['slug'] = $plate_slug;
+        // dd($val_data);
+
+        $plate->update($val_data);
+        return to_route('plates.index')->with('message', 'Plate modified');
     }
 
     /**
@@ -94,6 +105,7 @@ class PlateController extends Controller
      */
     public function destroy(Plate $plate)
     {
-        //
+        $plate->delete();
+        return to_route('plates.index');
     }
 }
