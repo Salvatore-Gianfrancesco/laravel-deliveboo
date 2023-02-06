@@ -13,7 +13,7 @@ class UpdatePlateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class UpdatePlateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|unique:plates,name|max:100',
+            'description' => 'nullable|max:300'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Campo obbligatorio',
+            'name.max' => 'Il nome deve essere di massimo :max caratteri',
+            'description.max' => 'La descrizione deve essere di massimo :max caratteri',
         ];
     }
 }
