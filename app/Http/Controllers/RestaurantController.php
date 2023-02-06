@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Restaurant;
 use App\Http\Requests\StoreRestaurantRequest;
 use App\Http\Requests\UpdateRestaurantRequest;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RestaurantController extends Controller
 {
@@ -70,7 +72,18 @@ class RestaurantController extends Controller
      */
     public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
     {
-        //
+        $val_data = $request->validated();
+        // if ($request->hasFile('cover_image')) {
+
+        //     $cover_image = Storage::put('uploads', $val_data['cover_image']);
+        //     $val_data['cover_image'] = $cover_image;
+        // }
+        $restaurant_slug = Restaurant::createSlug($val_data['company_name']);
+        $val_data['slug'] = $restaurant_slug;
+
+        $restaurant->update($val_data);
+
+        return to_route('admin.restaurant.show', $restaurant->id);
     }
 
     /**

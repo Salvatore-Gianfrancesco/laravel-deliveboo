@@ -23,13 +23,10 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
     Route::resource('/plates', PlateController::class)->parameters([
         'plates' => 'plate:slug'
     ]);
-
     Route::resource('restaurant', RestaurantController::class);
-
 });
 
 // Route::middleware('auth')->group(function () {
