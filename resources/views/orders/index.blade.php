@@ -47,8 +47,16 @@
                                 <a class="d-flex text-white p-2 my-2 bg-secondary justify-content-center rounded-2"
                                     href="{{ route('orders.edit', $order->id) }}"><i
                                         class="fa-solid fa-pen-to-square"></i></a>
-                                <a class="d-flex text-white p-2 my-2 bg-danger justify-content-center rounded-2"
-                                    href=""><i class="fa-solid fa-trash"></i></a>
+                                <!-- Modal trigger button -->
+                                <button type="button"
+                                    class="btn btn-danger d-flex text-white px-3 my-1 justify-content-center rounded-2 w-100"
+                                    data-bs-toggle="modal" data-bs-target="#deleteOrder-{{ $order->id }}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+
+                                <!-- Modal Body -->
+                                <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                                @include('partials.orders-modal')
                             </td>
                         </tr>
                     @empty
