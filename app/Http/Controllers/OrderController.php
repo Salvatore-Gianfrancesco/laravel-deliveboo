@@ -75,7 +75,9 @@ class OrderController extends Controller
      */
     public function update(UpdateOrderRequest $request, Order $order)
     {
-        //
+        $val_data = $request->validated();
+        $order->update($val_data);
+        return to_route('orders.index');
     }
 
     /**
