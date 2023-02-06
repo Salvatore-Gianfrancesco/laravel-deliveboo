@@ -13,7 +13,7 @@ class UpdateRestaurantRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,21 @@ class UpdateRestaurantRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'company_name' => 'required|max:100',
+            'description' => 'nullable|max:300',
+            'address' => 'nullable|max:300',
+            'piva' => 'nullable|digits:11',
+            'min_order' => 'nullable',
+            'closing_time' => 'nullable'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'company_name.required' => 'Campo obbligatorio',
+            'company_name.max' => 'Il nome deve essere di massimo :max caratteri',
+            'description.max' => 'La descrizione deve essere di massimo :max caratteri',
+            'piva.digits' => 'La descrizione deve essere di :digits caratteri',
         ];
     }
 }

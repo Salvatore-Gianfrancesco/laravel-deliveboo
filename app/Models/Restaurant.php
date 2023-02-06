@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Str;
 
 
 class Restaurant extends Model
@@ -15,6 +16,11 @@ class Restaurant extends Model
 
     protected $fillable = ['company_name', 'slug', 'description', 'address', 'piva', 'image', 'min_order', 'delivery', 'closing_time', 'user_id'];
 
+    public static function createSlug($name)
+    {
+        $restaurant_slug = Str::slug($name);
+        return $restaurant_slug;
+    }
 
     /**
      * Get the user associated with the Restaurant
