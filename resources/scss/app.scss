@@ -1,5 +1,22 @@
 @import '~bootstrap/scss/bootstrap';
 @import './partials/variables';
 
-@import './partials/sidebar';
+// @import './partials/sidebar';
 @import './partials/showRestaurant';
+
+#sidebarMenu {
+    height: calc(100vh - 3.5rem);
+
+    .nav-link {
+        font-weight: 500;
+        color: #333;
+
+        &:hover {
+            color: #2470dc;
+        }
+
+        &.active {
+            color: #2470dc;
+        }
+    }
+}

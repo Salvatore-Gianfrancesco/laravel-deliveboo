@@ -25,15 +25,22 @@ class StorePlateRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:plates,name|max:100',
-            'description' => 'nullable|max:300'
+            'description' => 'nullable|max:10000',
+            'price' => 'nullable|numeric|between:0,999',
+            'visibility' => 'nullable',
+            'image' => 'nullable|image'
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => 'Campo obbligatorio',
-            'name.max' => 'Il nome deve essere di massimo :max caratteri',
+            'name.required' => 'Il nome del piatto è obbligatorio',
+            'name.unique' => 'Esiste già un piatto con questo nome',
+            'name.max' => 'Il nome del piatto deve essere di massimo :max caratteri',
             'description.max' => 'La descrizione deve essere di massimo :max caratteri',
+            'price.numeric' => 'Il prezzo deve essere un valore numerico',
+            'price.between' => 'Il prezzo deve essere compreso tra 0 e 999',
+            'image.image' => 'L\'immagine inserita non è nel formato corretto'
         ];
     }
 }

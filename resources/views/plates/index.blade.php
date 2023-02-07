@@ -1,74 +1,93 @@
 @extends('layouts.index')
 
 @section('content')
-    <div class="container">
-        <h1>Plates</h1>
-        <a class="btn btn-primary my-3" href="{{ route('admin.plates.create') }}">New plate</a>
-        <div class="table-responsive mt-4">
-            <table class="table table-dark">
+    <div class="container my-3">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+            <h1>Piatti</h1>
+            <div>
+                <a class="btn btn-primary" href="{{ route('admin.plates.create') }}">Aggiungi un nuovo Piatto</a>
+            </div>
+        </div>
+
+        @include('partials.message')
+
+        <div class="table-responsive">
+            <table class="table table-primary">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">NAME</th>
-                        <th scope="col">SLUG</th>
-                        <th scope="col">DESCRIPTION</th>
-                        <th scope="col">PRICE</th>
-                        <th scope="col">VISIBILITY</th>
-                        <th scope="col">ACTIONS</th>
-
+                        <th scope="col">Id</th>
+                        <th scope="col">Immagine</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Prezzo</th>
+                        <th scope="col">Azioni</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($plates as $plate)
-                        <tr class="">
+                        <tr>
                             <td scope="row">{{ $plate->id }}</td>
+                            <td>
+                                @if ($plate->image)
+                                    <img src="{{ asset('storage/' . $plate->image) }}" alt="{{ $plate->slug }}"
+                                        width="100">
+                                @else
+                                    <img src="https://via.placeholder.com/600x300.png?text=Image" alt="placeholder"
+                                        width="100">
+                                @endif
+                            </td>
                             <td>{{ $plate->name }}</td>
-                            <td>{{ $plate->slug }}</td>
-                            {{-- <td><img class="w-75" src="{{ asset('storage/' . $plate->cover_image) }}" alt=""></td> --}}
-
-                            <td>{{ $plate->description }}</td>
                             <td>{{ $plate->price }}</td>
-                            <td>{{ $plate->visibility }}</td>
-                            <td class="d-flex flex-column">
-                                <a class="btn btn-primary btn-sm my-1" href="{{ route('admin.plates.show', $plate->id) }}"
-                                    role="button"><i class="fas fa-eye fa-sm fa-fw" aria-hidden="true"></i>
-                                </a>
-                                <a class="btn btn-secondary btn-sm my-1" href="{{ route('admin.plates.edit', $plate->id) }}"
-                                    role="button"><i class="fas fa-pencil fa-sm fa-fw" aria-hidden="true"></i>
-                                </a>
-                                <!-- Modal trigger button -->
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#deleteplate-{{ $plate->id }}"><i class="fa fa-trash fa-sm fa-fw"
-                                        aria-hidden="true"></i>
-                                </button>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <div>
+                                        <a class="btn btn-primary" href="{{ route('admin.plates.show', $plate->id) }}">
+                                            <i class="fas fa-eye fa-sm fa-fw"></i>
+                                            <span>Visualizza</span>
+                                        </a>
+                                    </div>
 
-                                <!-- Modal Body -->
-                                <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-                                <div class="modal fade" id="deleteplate-{{ $plate->id }}" tabindex="-1"
-                                    data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
-                                    aria-labelledby="modalplateId-{{ $plate->id }}" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
-                                        role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title text-dark" id="modalplateId-{{ $plate->id }}">
-                                                    Delete
-                                                    plate</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body text-dark">
-                                                Do you really want to delete this element permanently?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <form action="{{ route('admin.plates.destroy', $plate->id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
+                                    <div>
+                                        <a class="btn btn-secondary" href="{{ route('admin.plates.edit', $plate->id) }}">
+                                            <i class="fas fa-pencil fa-sm fa-fw"></i>
+                                            <span>Modifica</span>
+                                        </a>
+                                    </div>
+
+                                    <!-- Modal trigger button -->
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteplate-{{ $plate->id }}">
+                                        <i class="fa fa-trash fa-sm fa-fw"></i>
+                                        <span>Elimina</span>
+                                    </button>
+
+                                    <!-- Modal Body -->
+                                    <div class="modal fade" id="deleteplate-{{ $plate->id }}" tabindex="-1"
+                                        data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                        aria-labelledby="modalplateId-{{ $plate->id }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                                            role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-dark"
+                                                        id="modalplateId-{{ $plate->id }}">Eliminazione piatto</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-dark">
+                                                    Sei sicuro di voler eliminare questo piatto? Attenzione: l'azione è
+                                                    irreversibile!
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Annulla</button>
+                                                    <form action="{{ route('admin.plates.destroy', $plate->id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+
+                                                        <button type="submit" class="btn btn-danger">Elimina</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +96,10 @@
                         </tr>
                     @empty
                         <tr>
-                            <td>No plates Available</td>
+                            <td scope="row">Nessun piatto registrato</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     @endforelse
                 </tbody>

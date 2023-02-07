@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\Plate;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +16,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $user = Auth::user();
+        $orders = Order::where('restaurant_id', '=', $user->id)->orderByDesc('id')->get();
+
         return view('orders.index', compact('orders'));
     }
 
@@ -39,11 +40,19 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        /* dd($request); */
         $val_data = $request->validated();
 
+        if ($request->is_delivered == 'on') {
+            $val_data['is_delivered'] = true;
+        } else {
+            $val_data['is_delivered'] = false;
+        }
+
+        $val_data['restaurant_id'] = Auth::user()->id;
+
         $order = Order::create($val_data);
-        return to_route('admin.orders.index')->with('message', "$order->client_firstname,$order->client_lastname added succesfully!");
+
+        return to_route('admin.orders.index')->with('message', "Ordine $order->id inserito correttamente");
     }
 
     /**
@@ -54,7 +63,11 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return view('orders.show', compact('order'));
+        if ($order->restaurant_id == Auth::user()->id) {
+            return view('orders.show', compact('order'));
+        } else {
+            return view('404');
+        }
     }
 
     /**
@@ -65,7 +78,11 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        return view('orders.edit', compact('order'));
+        if ($order->restaurant_id == Auth::user()->id) {
+            return view('orders.edit', compact('order'));
+        } else {
+            return view('404');
+        }
     }
 
     /**
@@ -78,8 +95,16 @@ class OrderController extends Controller
     public function update(UpdateOrderRequest $request, Order $order)
     {
         $val_data = $request->validated();
+
+        if ($request->is_delivered == 'on') {
+            $val_data['is_delivered'] = true;
+        } else {
+            $val_data['is_delivered'] = false;
+        }
+
         $order->update($val_data);
-        return to_route('admin.orders.index');
+
+        return to_route('admin.orders.index')->with('message', "Ordine $order->id modificato correttamente");
     }
 
     /**
@@ -91,6 +116,7 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         $order->delete();
-        return to_route('orders.index');
+
+        return to_route('admin.orders.index');
     }
 }

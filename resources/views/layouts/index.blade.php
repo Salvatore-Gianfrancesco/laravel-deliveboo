@@ -20,9 +20,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
 
-    <!-- FontAwesome 6.2.0 CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    <!-- FontAwesome 6.2.1 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Usando Vite -->
@@ -31,121 +31,89 @@
 
 <body>
     <div id="app">
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark h-100">
+                <div class="container">
+                    <!-- logo -->
+                    <a class="navbar-brand" href="{{ Route('home') }}">DeliveBoo</a>
 
+                    <!-- dropdown menu (when page resized) -->
+                    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsibleNavId, #sidebarMenu" aria-controls="collapsibleNavId, sidebarMenu"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm px-5">
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
-                    </li>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    <!-- Authentication Links -->
-                    @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @if (Route::has('register'))
+                    <!-- menu links -->
+                    <div class="collapse navbar-collapse" id="collapsibleNavId">
+                        <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ Route('home') }}">Home</a>
                             </li>
-                        @endif
-                    @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
+                        </ul>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('admin') }}">{{ __('Dashboard') }}</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                        <!-- sign out -->
+                        <div class="nav-item text-nowrap">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    @endguest
-                </ul>
-            </div>
-        </nav>
+                                <button type="submit" class="nav-link px-3 bg-transparent text-light border-0">
+                                    Esci
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
         <div class="container-fluid">
             <div class="row">
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light px-0 sidebar collapse">
                     <div class="position-sticky pt-3 sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page"
-                                    href='{{ route('admin.restaurant.index') }}'>
+                                <a class="nav-link {{ Route::currentRouteName() === 'admin.dashboard' ? 'active' : '' }}"
+                                    aria-current="page" href="{{ Route('admin.dashboard') }}">
                                     <span data-feather="home" class="align-text-bottom"></span>
-                                    Restaurant
+                                    <i class="fa-solid fa-gauge-simple-high"></i>
+                                    Dashboard
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page"
-                                    href="{{ route('admin.plates.index') }}">
-                                    <span data-feather="home" class="align-text-bottom"></span>
-                                    Plates
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.orders.index') }}">
+                                <a class="nav-link {{ Route::currentRouteName() === 'admin.restaurant.index' ? 'active' : '' }}"
+                                    href="{{ Route('admin.restaurant.index') }}">
                                     <span data-feather="file" class="align-text-bottom"></span>
-                                    Orders
+                                    <i class="fa-solid fa-store"></i>
+                                    Ristorante
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ Route::currentRouteName() === 'admin.plates.index' ? 'active' : '' }}"
+                                    href="{{ Route('admin.plates.index') }}">
+                                    <span data-feather="file" class="align-text-bottom"></span>
+                                    <i class="fa-solid fa-utensils"></i>
+                                    I miei Piatti
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ Route::currentRouteName() === 'admin.orders.index' ? 'active' : '' }}"
+                                    href="{{ Route('admin.orders.index') }}">
+                                    <span data-feather="file" class="align-text-bottom"></span>
+                                    <i class="fa-regular fa-file-lines"></i>
+                                    I miei Ordini
                                 </a>
                             </li>
                         </ul>
                     </div>
+
                 </nav>
-                {{-- <div class="dlabnav border-right">
-                    <div class="dlabnav-scroll mm-active ps ps--active-y">
-                        <p class="menu-title style-1"> Main Menu</p>
-                        <ul class="metismenu mm-show" id="menu">
-                            <li class="mm-active"><a class="has-arrow " href="{{ route('admin.restaurant.index') }}"
-                                    aria-expanded="false">
-                                    <i class="fas fa-square"></i>
-                                    <span class="nav-text">Restaurant</span>
-                                </a>
-                            </li>
-                            <li><a class="has-arrow " href="{{ route('admin.plates.index') }}" aria-expanded="false">
 
-                                    <i class="fas fa-square"></i>
-                                    <span class="nav-text">Plates</span>
-                                </a>
-                            </li>
-                            <li><a class="has-arrow " href="{{ route('admin.orders.index') }}" aria-expanded="false">
-                                    <i class="fas fa-square"></i>
-
-                                    <span class="nav-text">Orders</span>
-                                </a>
-                            </li>
-                        </ul>
-                        </nav>
-                    </div>
-                </div> --}}
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                     @yield('content')
                 </main>
-                {{-- </div>
-        </div> --}}
             </div>
+        </div>
 </body>
 
 </html>

@@ -18,6 +18,13 @@ class OrderSeeder extends Seeder
     {
         for ($i = 1; $i <= 20; $i++) {
             $order = new Order();
+
+            if ($i <= 10) {
+                $order->restaurant_id = '1';
+            } else {
+                $order->restaurant_id = '2';
+            }
+
             $order->client_firstname = $faker->firstName();
             $order->client_lastname = $faker->lastName();
             $order->client_address = $faker->streetAddress();
@@ -25,7 +32,6 @@ class OrderSeeder extends Seeder
             $order->total_amount = $faker->randomFloat(2, 10, 50);
             $order->delivery_time = $faker->time();
             $order->is_delivered = false;
-            $order->datetime = $faker->dateTimeInInterval('-1 day', '+3 days');
             $order->save();
 
             if ($i <= 10) {
@@ -34,7 +40,7 @@ class OrderSeeder extends Seeder
                 $plates = $faker->randomElements([6, 7, 8, 9, 10], 2);
             }
             $quantity = $faker->randomElement([1, 2, 3]);
-            $order->plate()->attach($plates, array('quantity' => $quantity));
+            $order->plates()->attach($plates, array('quantity' => $quantity));
         }
     }
 }

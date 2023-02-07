@@ -12,11 +12,11 @@ class Type extends Model
     use HasFactory;
 
     /**
-     * The restaurant that belong to the Type
+     * The restaurants that belong to the Type
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function restaurant(): BelongsToMany
+    public function restaurants(): BelongsToMany
     {
         return $this->belongsToMany(Restaurant::class);
     }

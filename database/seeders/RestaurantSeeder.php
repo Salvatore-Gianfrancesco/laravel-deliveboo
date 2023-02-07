@@ -43,9 +43,9 @@ class RestaurantSeeder extends Seeder
             $new_restaurant->save();
 
             if ($restaurant['user_id'] == 1) {
-                $new_restaurant->type()->attach([4, 6]);
+                $new_restaurant->types()->attach([4, 6]);
             } else {
-                $new_restaurant->type()->attach([1, 7]);
+                $new_restaurant->types()->attach([1, 7]);
             }
         }
     }

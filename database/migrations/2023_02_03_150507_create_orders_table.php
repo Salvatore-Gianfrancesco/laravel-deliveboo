@@ -22,7 +22,6 @@ return new class extends Migration
             $table->float('total_amount', 5, 2)->nullable();
             $table->time('delivery_time')->nullable();
             $table->boolean('is_delivered')->default(false);
-            $table->dateTime('datetime')->nullable();
             $table->timestamps();
         });
     }
