@@ -140,7 +140,7 @@ class PlateController extends Controller
             Storage::delete($plate->image);
         }
         $plate->delete();
-
+        
         return to_route('admin.plates.index');
     }
 }
