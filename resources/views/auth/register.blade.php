@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mt-4">
 
-        @include('partials.error')
+        @include('partials.errors')
 
         <div class="row justify-content-center">
             <div class="col-md-8">
