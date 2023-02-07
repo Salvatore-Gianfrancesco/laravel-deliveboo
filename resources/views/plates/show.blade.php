@@ -1,11 +1,17 @@
 @extends('layouts.index')
 
 @section('content')
-    <h1>{{ $plate->name }}</h1>
-    <hr>
-    <span><strong>Slug:</strong> {{ $plate->slug }}</span>
-    {{-- <img src="{{asset('storage/' . $plate->cover_image)}}" alt=""> --}}
-    <p><strong>Description:</strong> {{ $plate->description }}</p>
-    <span><strong>Price:</strong> {{ $plate->price }}</span>
-    <span><strong>Availability:</strong> {{ $plate->visibility }}</span>
+    <div class="container my-3 d-flex flex-column gap-3">
+        <h1>{{ $plate->name }}</h1>
+
+        <hr>
+
+        @if ($plate->image)
+            <img src="{{ asset('storage/' . $plate->image) }}" alt="{{ $plate->slug }}" width="300">
+        @endif
+
+        <p class="lead"><strong>Descrizione:</strong> {{ $plate->description ? $plate->description : 'NOT SET' }}</p>
+        <div class="lead"><strong>Prezzo:</strong> {{ $plate->price ? "$plate->price €" : 'NOT SET' }}</div>
+        <div class="lead"><strong>Visibilità:</strong> {{ $plate->visibility ? 'Si' : 'No' }}</div>
+    </div>
 @endsection

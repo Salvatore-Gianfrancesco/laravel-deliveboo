@@ -1,61 +1,73 @@
 @extends('layouts.index')
 
 @section('content')
-    @include('partials.errors')
-    <form action="{{ route('orders.store') }}" method="post">
-        @csrf
-        <div class="mb-3">
-            <label for="client_firstname" class="form-label">Name</label>
-            <input type="text" name="client_firstname" id="client_firstname"
-                class="form-control @error('client_firstname') is-invalid @enderror" placeholder="Insert text"
-                aria-describedby="helpId">
-            <small id="helpId" class="text-muted">Insert name</small>
-        </div>
-        <div class="mb-3">
-            <label for="client_lastname" class="form-label">Surname</label>
-            <input type="text" name="client_lastname" id="client_lastname"
-                class="form-control @error('client_lastname') is-invalid @enderror" placeholder="Insert text"
-                aria-describedby="helpId">
-            <small id="helpId" class="text-muted">Insert surname</small>
-        </div>
-        <div class="mb-3">
-            <label for="client_address" class="form-label">Address</label>
-            <input type="text" name="client_address" id="client_address"
-                class="form-control @error('client_address') is-invalid @enderror" placeholder="Insert text"
-                aria-describedby="helpId">
-            <small id="helpId" class="text-muted">Insert address</small>
-        </div>
-        <div class="mb-3">
-            <label for="client_phone" class="form-label">Phone</label>
-            <input type="number" name="client_phone" id="client_phone"
-                class="form-control @error('client_phone') is-invalid @enderror" placeholder="Insert number"
-                aria-describedby="helpId">
-            <small id="helpId" class="text-muted">Insert phone number</small>
-        </div>
-        <div class="mb-3">
-            <label for="total_amount" class="form-label">Total Amount</label>
-            <input type="number" name="total_amount" id="total_amount"
-                class="form-control @error('total_amount') is-invalid @enderror" placeholder="Insert number"
-                aria-describedby="helpId">
-            <small id="helpId" class="text-muted">Insert total amount</small>
-        </div>
-        <div class="mb-3">
-            <label for="delivery_time" class="form-label">Delivery Time</label>
-            <input type="time" name="delivery_time" id="delivery_time"
-                class="form-control @error('delivery_time') is-invalid @enderror" placeholder="Insert time"
-                aria-describedby="helpId">
-            <small id="helpId" class="text-muted">Insert delivery time</small>
-        </div>
-        <div class="mb-3">
-            <label for="is_delivered" class="form-label">Is Delivered</label>
-            <select class="form-select form-select" name="is_delivered" id="is_delivered">
-                <option selected>Select one</option>
-                <option value="">Yes</option>
-                <option value="">No</option>
-            </select>
-        </div>
+    <div class="container my-3">
+        <h1 class="mb-3">Aggiungi un nuovo Ordine</h1>
 
+        @include('partials.errors')
 
-        <button type="submit" class="btn btn-dark">Add Order</button>
-    </form>
+        <form action="{{ route('admin.orders.store') }}" method="post">
+            @csrf
+
+            {{-- client_firstname --}}
+            <div class="mb-3">
+                <label for="client_firstname" class="form-label">Nome</label>
+                <input type="text" name="client_firstname" id="client_firstname"
+                    class="form-control @error('client_firstname') is-invalid @enderror"
+                    value="{{ old('client_firstname') }}" required maxlength="100">
+            </div>
+
+            {{-- client_lastname --}}
+            <div class="mb-3">
+                <label for="client_lastname" class="form-label">Cognome</label>
+                <input type="text" name="client_lastname" id="client_lastname"
+                    class="form-control @error('client_lastname') is-invalid @enderror" value="{{ old('client_lastname') }}"
+                    required maxlength="100">
+            </div>
+
+            {{-- client_address --}}
+            <div class="mb-3">
+                <label for="client_address" class="form-label">Indirizzo</label>
+                <input type="text" name="client_address" id="client_address"
+                    class="form-control @error('client_address') is-invalid @enderror" value="{{ old('client_address') }}"
+                    required maxlength="255">
+            </div>
+
+            {{-- client_phone --}}
+            <div class="mb-3">
+                <label for="client_phone" class="form-label">Numero di telefono</label>
+                <input type="text" name="client_phone" id="client_phone"
+                    class="form-control @error('client_phone') is-invalid @enderror" value="{{ old('client_phone') }}"
+                    required maxlength="20">
+            </div>
+
+            {{-- total_amount --}}
+            <div class="mb-3">
+                <label for="total_amount" class="form-label">Prezzo</label>
+                <input type="number" step="0.01" name="total_amount" id="total_amount"
+                    class="form-control @error('total_amount') is-invalid @enderror" value="{{ old('total_amount') }}"
+                    required min="0">
+            </div>
+
+            {{-- delivery_time --}}
+            <div class="mb-3">
+                <label for="delivery_time" class="form-label">Orario di consegna</label>
+                <input type="time" step="1" name="delivery_time" id="delivery_time"
+                    class="form-control @error('delivery_time') is-invalid @enderror" value="{{ old('delivery_time') }}"
+                    required>
+            </div>
+
+            {{-- is_delivered --}}
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input @error('is_delivered') is-invalid @enderror" type="checkbox" role="switch"
+                    name="is_delivered" id="is_delivered" {{ old('is_delivered') ? 'checked' : '' }}>
+                <label class="form-check-label" for="is_delivered">
+                    Consegnato?
+                </label>
+            </div>
+
+            {{-- submit button --}}
+            <button type="submit" class="btn btn-primary">Add Order</button>
+        </form>
+    </div>
 @endsection

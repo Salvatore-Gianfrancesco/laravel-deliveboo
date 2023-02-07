@@ -82,11 +82,11 @@ return [
 
     'types' => [
         ['name' => 'Pizza'],
-        ['name' => 'Suchi'],
-        ['name' => 'Dessert'],
-        ['name' => 'Burgers'],
+        ['name' => 'Sushi'],
+        ['name' => 'Dolci'],
+        ['name' => 'Hamburger'],
         ['name' => 'Kebab'],
-        ['name' => 'American'],
-        ['name' => 'Italian']
+        ['name' => 'Americano'],
+        ['name' => 'Italiano']
     ]
 ];

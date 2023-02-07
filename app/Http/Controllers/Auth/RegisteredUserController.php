@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
+use App\Models\Type;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -22,7 +23,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $types = Type::all();
+
+        return view('auth.register', compact('types'));
     }
 
     /**
@@ -32,6 +35,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // dd($request);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
@@ -41,22 +45,20 @@ class RegisteredUserController extends Controller
             'piva' => ['required', 'unique:restaurants,piva', 'digits:11']
         ]);
 
-        // dd($request);
-
-
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        Restaurant::create([
+        $restaurant = Restaurant::create([
             'company_name' => $request->company_name,
             'slug' => Str::slug($request->company_name),
             'address' => $request->address,
             'piva' => $request->piva
         ]);
+
+        $restaurant->types()->attach($request->types);
 
         event(new Registered($user));
 

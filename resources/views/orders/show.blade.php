@@ -1,43 +1,52 @@
 @extends('layouts.index')
 
 @section('content')
-    <div class="container py-5">
-        <div class="d-flex gap-4">
-            <div class="details">
-                <div class="name">
-                    <strong>Name:</strong>
-                    {{ $order->client_firstname }}
-                </div>
-                <div class="surname">
-                    <strong>Surname:</strong>
-                    {{ $order->client_lastname }}
-                </div>
-                <div class="address">
-                    <strong>Address:</strong>
-                    {{ $order->client_address }}
-                </div>
-                <div class="phone">
-                    <strong>Phone Number:</strong>
-                    {{ $order->client_phone }}
-                </div>
-                <div class="total_amount">
-                    <strong>Total Amount:</strong>
-                    {{ $order->total_amount }}
-                </div>
-                <div class="delivery_time">
-                    <strong>Delivery Time:</strong>
-                    {{ $order->delivery_time }}
-                </div>
-                <div class="is_delivered">
-                    <strong>Is Delivered:</strong>
-                    {{ $order->is_delivered }}
-                </div>
-                <div class="datetime">
-                    <strong>Date Time:</strong>
-                    {{ $order->datetime }}
-                </div>
+    <div class="container my-3">
+        <div class="d-flex flex-column gap-3">
+            <h1>Ordine {{ $order->id }}</h1>
 
+            {{-- client_firstname --}}
+            <div class="lead">
+                <strong>Nome</strong>:
+                {{ $order->client_firstname }}
+            </div>
+
+            {{-- client_lastname --}}
+            <div class="lead">
+                <strong>Cognome</strong>:
+                {{ $order->client_lastname }}
+            </div>
+
+            {{-- client_address --}}
+            <div class="lead">
+                <strong>Indirizzo</strong>:
+                {{ $order->client_address }}
+            </div>
+
+            {{-- client_phone --}}
+            <div class="lead">
+                <strong>Numero di telefono</strong>:
+                {{ $order->client_phone }}
+            </div>
+
+            {{-- total_amount --}}
+            <div class="lead">
+                <strong>Prezzo</strong>:
+                {{ $order->total_amount }} €
+            </div>
+
+            {{-- delivery_time --}}
+            <div class="lead">
+                <strong>Orario di consegna</strong>:
+                {{ $order->delivery_time }}
+            </div>
+
+            {{-- is_delivered --}}
+            <div class="lead">
+                <strong>Consegnato</strong>:
+                {{ $order->is_delivered ? 'Si' : 'No' }}
             </div>
         </div>
+    </div>
     </div>
 @endsection

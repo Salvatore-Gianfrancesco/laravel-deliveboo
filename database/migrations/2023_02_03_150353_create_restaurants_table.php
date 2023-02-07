@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('piva', 11)->nullable();
             $table->string('image')->nullable();
-            $table->float('min_order', 5, 2)->nullable();
+            $table->float('min_order', 5, 2)->default(0);
             $table->string('delivery')->nullable();
             $table->time('closing_time')->nullable();
             $table->timestamps();

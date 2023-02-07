@@ -19,6 +19,7 @@ class PlateController extends Controller
     {
         $user = Auth::user();
         $plates = Plate::where('restaurant_id', '=', $user->id)->get();
+
         return view('plates.index', compact('plates'));
     }
 
@@ -41,17 +42,26 @@ class PlateController extends Controller
     public function store(StorePlateRequest $request)
     {
         $val_data = $request->validated();
-        // if ($request->hasFile('cover_image')) {
 
-        //     $cover_image = Storage::put('uploads', $val_data['cover_image']);
-        //     $val_data['cover_image'] = $cover_image;
-        // }
         $plate_slug = Plate::createSlug($val_data['name']);
         $val_data['slug'] = $plate_slug;
-        // dd($val_data);
-        Plate::create($val_data);
 
-        return to_route('admin.plates.index')->with('message', 'Plate added successfully');
+        if ($request->hasFile('image')) {
+            $image = Storage::put('uploads', $request['image']);
+            $val_data['image'] = $image;
+        }
+
+        if ($request->visibility == 'on') {
+            $val_data['visibility'] = true;
+        } else {
+            $val_data['visibility'] = false;
+        }
+
+        $val_data['restaurant_id'] = Auth::user()->id;
+
+        $plate = Plate::create($val_data);
+
+        return to_route('admin.plates.index')->with('message', "Piatto $plate->id inserito correttamente");
     }
 
     /**
@@ -62,7 +72,11 @@ class PlateController extends Controller
      */
     public function show(Plate $plate)
     {
-        return view('plates.show', compact('plate'));
+        if ($plate->restaurant_id == Auth::user()->id) {
+            return view('plates.show', compact('plate'));
+        } else {
+            return view('404');
+        }
     }
 
     /**
@@ -73,7 +87,11 @@ class PlateController extends Controller
      */
     public function edit(Plate $plate)
     {
-        return view('plates.edit', compact('plate'));
+        if ($plate->restaurant_id == Auth::user()->id) {
+            return view('plates.edit', compact('plate'));
+        } else {
+            return view('404');
+        }
     }
 
     /**
@@ -85,18 +103,29 @@ class PlateController extends Controller
      */
     public function update(UpdatePlateRequest $request, Plate $plate)
     {
+        // dd($request->request);
         $val_data = $request->validated();
-        // if ($request->hasFile('cover_image')) {
 
-        //     $cover_image = Storage::put('uploads', $val_data['cover_image']);
-        //     $val_data['cover_image'] = $cover_image;
-        // }
         $plate_slug = Plate::createSlug($val_data['name']);
         $val_data['slug'] = $plate_slug;
-        // dd($val_data);
+
+        if ($request->hasFile('image')) {
+            if ($plate->image) {
+                Storage::delete($plate->image);
+            }
+            $image = Storage::put('uploads', $request['image']);
+            $val_data['image'] = $image;
+        }
+
+        if ($request->visibility == 'on') {
+            $val_data['visibility'] = true;
+        } else {
+            $val_data['visibility'] = false;
+        }
 
         $plate->update($val_data);
-        return to_route('admin.plates.index')->with('message', 'Plate modified');
+
+        return to_route('admin.plates.index')->with('message', "Piatto $plate->id modificato correttamente");
     }
 
     /**
@@ -107,7 +136,11 @@ class PlateController extends Controller
      */
     public function destroy(Plate $plate)
     {
+        if ($plate->image) {
+            Storage::delete($plate->image);
+        }
         $plate->delete();
-        return to_route('plates.index');
+
+        return to_route('admin.plates.index');
     }
 }

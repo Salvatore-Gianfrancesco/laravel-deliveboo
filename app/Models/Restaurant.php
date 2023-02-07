@@ -33,21 +33,31 @@ class Restaurant extends Model
     }
 
     /**
-     * Get all of the plate for the Restaurant
+     * Get all of the plates for the Restaurant
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function plate(): HasMany
+    public function plates(): HasMany
     {
         return $this->hasMany(Plate::class);
     }
 
     /**
-     * The type that belong to the Restaurant
+     * Get all of the orders for the Restaurant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    /**
+     * The types that belong to the Restaurant
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function type(): BelongsToMany
+    public function types(): BelongsToMany
     {
         return $this->belongsToMany(Type::class);
     }
