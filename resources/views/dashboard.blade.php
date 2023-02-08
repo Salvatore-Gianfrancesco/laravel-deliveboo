@@ -31,27 +31,78 @@
             <div id="banner">
                 <div class="info">
                     <div class="container">
-                        <div class="carousel-caption text-start">
+                        <div class="carousel-caption text-end">
+                            
                             <!-- title -->
                             <h1>{{ $restaurant->company_name }}</h1>
-                            <!-- button -->
-                            <a class="btn btn-lg btn-soft" href="{{ route('admin.restaurant.edit', $restaurant->id) }}">Edit
-                                Restaurant</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="container restaurant_details">
-                <div class="row">
-                    <div class="col d-flex">
-                        <img class="img-fluid w-25" src="../assets/img/hamburger-g3755dde88_1920.jpg" alt="">
-                        <p class="ms-5">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit tenetur neque
-                            amet
-                            officia, facere eveniet veniam nisi repellat expedita similique!
-                        </p>
-
+            <div class="container d-flex flex-column gap-3 my-3">
+                <div class="d-flex justify-content-between align-items-start">
+                    {{-- company_name --}}
+                    <h1>{{ $restaurant->company_name }}</h1>
+        
+                    {{-- edit route button --}}
+                    <div>
+                        <a class="btn btn-primary" href="{{ route('admin.restaurant.edit', $restaurant->id) }}">Modifica i dati</a>
                     </div>
+                </div>
+        
+                {{-- image --}}
+                @if ($restaurant->image)
+                    <img src="{{ asset('storage/' . $restaurant->image) }}" alt="{{ $restaurant->slug }}" width="500">
+                @endif
+        
+                {{-- description --}}
+                <div class="lead">
+                    <strong>Descrizione</strong>:
+                    {{ $restaurant->description ? $restaurant->description : 'NOT SET' }}
+                </div>
+        
+                {{-- types --}}
+                <div class="lead">
+                    <strong>Tipi di cucina</strong>:
+                    @if (count($restaurant->types) > 0)
+                        @foreach ($restaurant->types as $type)
+                            <span>{{ $type->name }} </span>
+                        @endforeach
+                    @else
+                        <span>No type</span>
+                    @endif
+                </div>
+        
+                {{-- address --}}
+                <div class="lead">
+                    <strong>Indirizzo</strong>:
+                    {{ $restaurant->address ? $restaurant->address : 'NOT SET' }}
+                </div>
+        
+                {{-- piva --}}
+                <div class="lead">
+                    <strong>P-IVA</strong>:
+                    {{ $restaurant->piva ? $restaurant->piva : 'NOT SET' }}
+                </div>
+        
+                {{-- min_order --}}
+                <div class="lead">
+                    <strong>Ordine minimo</strong>:
+                    {{ $restaurant->min_order ? $restaurant->min_order : 'NOT SET' }} €
+                </div>
+        
+                {{-- delivery --}}
+                <div class="lead">
+                    <strong>Tipo di consegna</strong>:
+                    {{ $restaurant->delivery ? $restaurant->delivery : 'NOT SET' }}
+                </div>
+        
+                {{-- closing_time --}}
+                <div class="lead">
+                    <strong>Orario di chiusura</strong>:
+                    {{ $restaurant->closing_time ? $restaurant->closing_time : 'NOT SET' }}
+                </div>
+            </div>
                     <div class="col">
 
                     </div>
@@ -65,7 +116,7 @@
                 <!-- Three columns of food-->
                 <div class="row food">
                     <div class="view_all d-flex justify-content-between align-items-baseline">
-                        <h4>Food</h4> <a href="#">View All</a>
+                        <h4>Food</h4> <a href="{{ route('admin.plates.index') }}">Vedi tutto</a>
                     </div>
                     <hr>
                     <div class="col-lg-4 g-4">
@@ -127,7 +178,7 @@
                             </p>
                             <!-- description -->
                             <div class="button d-flex align-self-baseline">
-                                <a class="btn btn-soft" href="#">+</a>
+                                <a class="btn btn-soft"  href="">+</a>
                             </div>
                             <!-- button -->
                         </div>
@@ -139,7 +190,7 @@
                 <!-- Three columns of ORDERS-->
                 <div class="row orders">
                     <div class="view_all d-flex justify-content-between align-items-baseline">
-                        <h4>Orders</h4> <a href="#">View All</a>
+                        <h4>Orders</h4> <a href="{{ route('admin.orders.index') }}">Vedi tutto</a>
                     </div>
                     <hr>
                     <div class="col-lg-4 col-sm-2 g-4">
