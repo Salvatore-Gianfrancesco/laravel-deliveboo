@@ -7,18 +7,16 @@
 
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Registrazione') }}</div>
-
-                    <div class="card-body">
+                <div class="login-box w-100">
+                    <p>{{ __('Registrazione') }}</p>
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
-                            <div class="mb-4 row">
+                            <div class="mb-4 user-box">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
-
-                                <div class="col-md-6">
+                                    class="col-form-label text-md-right">{{ __('Nome') }}</label>
+                                
+                                <div class="col">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
                                         value="{{ old('name') }}" required autocomplete="name">
@@ -31,11 +29,11 @@
                                 </div>
                             </div>
 
-                            <div class="mb-4 row">
+                            <div class="mb-4 user-box">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}</label>
+                                    class=" col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col">
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email">
@@ -48,11 +46,11 @@
                                 </div>
                             </div>
 
-                            <div class="mb-4 row">
+                            <div class="mb-4 user-box">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                    class="col-form-label text-md-right">{{ __('Password') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="new-password">
@@ -65,21 +63,21 @@
                                 </div>
                             </div>
 
-                            <div class="mb-4 row">
+                            <div class="mb-4 user-box">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
+                                    class="col-form-label text-md-right">{{ __('Conferma Password') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
 
-                            <div class="mb-4 row">
+                            <div class="mb-4 user-box">
                                 <label for="company_name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome del Ristorante') }}</label>
+                                    class="col-form-label text-md-right">{{ __('Nome del Ristorante') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col">
                                     <input id="company_name" type="text"
                                         class="form-control @error('company_name') is-invalid @enderror" name="company_name"
                                         value="{{ old('company_name') }}" required maxlength="100">
@@ -92,11 +90,11 @@
                                 </div>
                             </div>
 
-                            <div class="mb-4 row">
+                            <div class="mb-4 user-box">
                                 <label for="types"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Tipo di cucina') }}</label>
+                                    class="col-form-label text-md-right">{{ __('Tipo di cucina') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col">
                                     <select multiple class="form-select" name="types[]" id="types" required>
                                         <option value="" disabled>Seleziona una tipologia</option>
 
@@ -117,11 +115,11 @@
                                 </div>
                             </div>
 
-                            <div class="mb-4 row">
+                            <div class="mb-4 user-box">
                                 <label for="address"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }}</label>
+                                    class="col-form-label text-md-right">{{ __('Indirizzo') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col">
                                     <input id="address" type="text"
                                         class="form-control @error('address') is-invalid @enderror" name="address"
                                         value="{{ old('address') }}" required maxlength="255">
@@ -134,11 +132,11 @@
                                 </div>
                             </div>
 
-                            <div class="mb-4 row">
+                            <div class="mb-4 user-box">
                                 <label for="piva"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('P-IVA') }}</label>
+                                    class="col-form-label text-md-right">{{ __('P-IVA') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col">
                                     <input id="piva" type="text"
                                         class="form-control @error('piva') is-invalid @enderror" name="piva"
                                         value="{{ old('piva') }}" required maxlength="11" minlength="11">
@@ -151,15 +149,19 @@
                                 </div>
                             </div>
 
-                            <div class="mb-4 row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                            <div class="mb-4 mb-0">
+                                <div class="col-md-8">
+                                    <button type="submit" class="btn login">
+                                        <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
                                         {{ __('Registrati') }}
                                     </button>
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    
                 </div>
             </div>
         </div>
