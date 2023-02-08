@@ -3,6 +3,17 @@
 main {
     .btn-soft {
         background-color: $primary_soft;
+        border-radius: 20px;
+
+        &:hover {
+            background-color: $primary_soft;
+
+            color: $light;
+        }
+    }
+
+    .btn-small {
+        background-color: $primary_soft;
         border-radius: 50%;
         width: 45px;
         height: 45px;
@@ -14,6 +25,7 @@ main {
             color: $light;
         }
     }
+
 
     .numb {
         color: $primary;

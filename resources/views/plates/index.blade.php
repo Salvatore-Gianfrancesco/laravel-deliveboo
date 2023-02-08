@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-between align-items-start mb-3">
             <h1>Piatti</h1>
             <div>
-                <a class="btn btn-dark" href="{{ route('admin.plates.create') }}">Aggiungi un nuovo Piatto</a>
+                <a class="btn btn-soft" href="{{ route('admin.plates.create') }}">Aggiungi un nuovo Piatto</a>
             </div>
         </div>
 
@@ -37,14 +37,14 @@
                         <h3 class="text-center">
                             <strong class="numb">{{ $plate->price }}&euro;</strong>
                         </h3>
-                        <div class="buttons mt-2">
-                            <a class="btn btn-soft" href="{{ route('admin.plates.show', $plate->id) }}">
+                        <div class="buttons d-flex justify-content-center mt-2">
+                            <a class="btn btn-small" href="{{ route('admin.plates.show', $plate->id) }}">
                                 <i class="fas fa-eye fa-sm fa-fw"></i>
                             </a>
-                            <a class="btn btn-soft" href="{{ route('admin.plates.edit', $plate->id) }}">
+                            <a class="btn btn-small" href="{{ route('admin.plates.edit', $plate->id) }}">
                                 <i class="fas fa-pencil fa-sm fa-fw"></i>
                             </a>
-                            <button type="button" class="btn btn-soft" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-small" data-bs-toggle="modal"
                                 data-bs-target="#deleteplate-{{ $plate->id }}">
                                 <i class="fa fa-trash fa-sm fa-fw"></i>
                             </button>
