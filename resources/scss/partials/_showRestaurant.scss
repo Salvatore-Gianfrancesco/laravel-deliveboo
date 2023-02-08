@@ -12,6 +12,8 @@ main {
         }
     }
 
+
+
     .btn-small {
         background-color: $primary_soft;
         border-radius: 50%;
@@ -44,10 +46,6 @@ main {
             background-color: rgba(0, 0, 0, 0.465);
             height: 100%;
         }
-    }
-
-
-    .marketing {
 
         .food {
             margin-bottom: 5rem;
@@ -79,6 +77,8 @@ main {
             margin-bottom: 1rem;
         }
 
+
+
         #view_orders {
             .line {
                 color: black;
@@ -97,6 +97,7 @@ main {
                 }
             }
 
+
             .order {
                 img {
                     width: 50px;
@@ -109,5 +110,9 @@ main {
 
             }
         }
+
     }
+
+
+
 }

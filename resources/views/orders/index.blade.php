@@ -113,26 +113,41 @@
             @forelse($orders as $order)
                 <div class="col-lg-4 col-sm-2 g-4">
                     <div class="card p-3 d-flex flex-column align-items-center justify-content-between">
-                        <div class="order_number text-center">
+
+                        <div class="order_number text-center w-75">
+                            <i class="fa-sharp fa-regular fa-file-lines"></i>
                             <h5>Order #{{ $order->id }}</h5>
                             <!-- title -->
-                            {{-- <span>Feb 1 2023, 18:31 PM</span> --}}
+                            <span class="py-2 w-100 d-flex justify-content-around">
+                                Delivery Time <strong class="text-end"> {{ $order->delivery_time }}</strong>
+                            </span>
+
                         </div>
                         <hr class="w-100">
                         <div class="restaurant_name text-start w-100">
-                            <h6><strong>{{ $order->restaurant->company_name }}</strong></h6>
+                            <h4><strong>{{ $order->restaurant->company_name }}</strong></h4>
                         </div>
                         <hr class="w-100 line">
                         <!-- restaurant name -->
                         <div class="delivery d-flex flex-column text-start w-100">
-                            <span class="py-2 w-100 d-flex justify-content-between">
-                                Delivery Time
-                                <strong>{{ $order->delivery_time }}</strong>
-                            </span>
-                            <span class="py-3 w-100 d-flex justify-content-between">
-                                Distance
-                                <strong>2.5km</strong>
-                            </span>
+
+                            <h5 class="text-uppercase fw-bold">Client</h5>
+                            <div class="client_info">
+                                <span class="w-100 d-flex justify-content-between">
+                                    Name
+                                    <strong class="text-end">{{ $order->client_firstname }}
+                                        {{ $order->client_lastname }}</strong>
+                                </span>
+                                <span class="w-100 d-flex justify-content-between">
+                                    Address
+                                    <strong class="text-end">{{ $order->client_address }}</strong>
+                                </span>
+                                <span class="w-100 d-flex justify-content-between">
+                                    Phone
+                                    <strong class="text-end">{{ $order->client_phone }}</strong>
+                                </span>
+
+                            </div>
                         </div>
                         <hr class="w-100 line">
                         <!-- delivery -->
@@ -140,10 +155,14 @@
                             <div class="order row my-2">
                                 @if (strlen($order->plates) == 1)
                                     <div class="col-3">
-                                        {{-- <div class="item">
-                                            <img class="img-fluid" src="../assets/img/hamburger-g3755dde88_1920.jpg"
-                                                alt="">
-                                        </div> --}}
+                                        @if ($order->plates->image)
+                                            <img class="img-fluid icon"
+                                                src="{{ asset('storage/' . $order->plates->image) }}"
+                                                alt="{{ $order->plates->slug }}">
+                                        @else
+                                            <img class="img-fluid icon"
+                                                src="https://via.placeholder.com/600x300.png?text=Image" alt="placeholder">
+                                        @endif
                                     </div>
                                     <!-- image -->
                                     <div class="col-9 d-flex align-items-center justify-content-between p-0">
@@ -152,9 +171,11 @@
                                             <span>x1</span>
                                         </div>
                                         <div class="price_order me-3">
-                                            <span class="numb"><strong>+12.99&euro;</strong></span>
+                                            <span
+                                                class="numb"><strong>+{{ $order->plates[0]->price }}&euro;</strong></span>
                                         </div>
                                     </div>
+                                    <!-- details -->
                                 @else
                                     <div class="col-3">
                                         {{-- <div class="item">
@@ -169,9 +190,12 @@
                                             <span>x1</span>
                                         </div>
                                         <div class="price_order me-3">
-                                            <span class="numb"><strong>+12.99&euro;</strong></span>
+                                            <span
+                                                class="numb"><strong>+{{ $order->plates[0]->price }}&euro;</strong></span>
                                         </div>
                                     </div>
+                                    <!-- details -->
+
                                     <div class="col-3">
                                         {{-- <div class="item">
                                             <img class="img-fluid" src="../assets/img/hamburger-g3755dde88_1920.jpg"
@@ -185,34 +209,13 @@
                                             <span>x1</span>
                                         </div>
                                         <div class="price_order me-3">
-                                            <span class="numb"><strong>+12.99&euro;</strong></span>
-                                        </div>
-                                    </div>
-                                @endif
-
-                                <!-- details -->
-                            </div>
-                            <!-- SINGLE ORDER -->
-                            {{-- <div class="order row my-2">
-                                    <div class="col-3">
-                                        <div class="item">
-                                            <img class="img-fluid" src="../assets/img/plate-gdb96679aa_1920.jpg"
-                                                alt="">
-                                        </div>
-                                    </div>
-                                    <!-- image -->
-                                    <div class="col-9 d-flex align-items-center justify-content-between p-0">
-                                        <div class="quantity">
-                                            <h6><strong>Pizza</strong></h6>
-                                            <span>x2</span>
-                                        </div>
-                                        <div class="price_order me-3">
-                                            <span class="numb"><strong>+12.99&euro;</strong></span>
+                                            <span
+                                                class="numb"><strong>+{{ $order->plates[1]->price }}&euro;</strong></span>
                                         </div>
                                     </div>
                                     <!-- details -->
-                                </div> --}}
-                            <!-- SINGLE ORDER -->
+                                @endif
+                            </div>
                         </div>
                         <hr class="w-100 line">
                         <!-- ORDER MENU -->
@@ -222,8 +225,65 @@
                             </h5>
                         </div>
                         <!-- price -->
-                        <a class="btn btn-soft" href="#">View details &raquo;</a>
+                        @if ($order->is_delivered == false)
+                            <a class="btn btn-delivering" href="#">Delivering</a>
+                        @else
+                            <a class="btn btn-completed" href="#">Completed</a>
+                        @endif
                         <!-- button -->
+
+                        <div class="action_buttons mt-2">
+                            <div class="buttons d-flex justify-content-center align-items-center h-100">
+                                <a class="btn btn-small" href="{{ route('admin.orders.show', $order->id) }}">
+                                    <i class="fas fa-eye fa-sm fa-fw"></i>
+                                </a>
+                                <!-- show -->
+
+                                <a class="btn btn-small" href="{{ route('admin.orders.edit', $order->id) }}">
+                                    <i class="fas fa-pencil fa-sm fa-fw"></i>
+                                </a>
+                                <!-- edit -->
+
+                                <button type="button" class="btn btn-small" data-bs-toggle="modal"
+                                    data-bs-target="#deleteorder-{{ $order->id }}">
+                                    <i class="fa fa-trash fa-sm fa-fw"></i>
+                                </button>
+                                <!-- delete -->
+
+                                <div class="modal fade" id="deleteorder-{{ $order->id }}" tabindex="-1"
+                                    data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                    aria-labelledby="modalorderId-{{ $order->id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                                        role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-dark" id="modalorderId-{{ $order->id }}">
+                                                    Eliminazione piatto</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body text-dark">
+                                                Sei sicuro di voler eliminare questo piatto? Attenzione: l'azione è
+                                                irreversibile!
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Annulla</button>
+                                                <form action="{{ route('admin.orders.destroy', $order->id) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="btn btn-danger">Elimina</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- action buttons -->
                     </div>
                 </div>
             @empty
