@@ -11,7 +11,7 @@
 
         @include('partials.message')
 
-        <div class="table-responsive">
+        {{-- <div class="table-responsive">
             <table class="table table-primary">
                 <thead>
                     <tr>
@@ -104,6 +104,47 @@
                     @endforelse
                 </tbody>
             </table>
+        </div> --}}
+
+        <div class="row food">
+            @forelse($plates as $plate)
+                <div class="col-lg-4 g-4">
+                    <div class="card p-3">
+                        <div class="image d-flex justify-content-center">
+                            @if ($plate->image)
+                                <img class="img-fluid icon" src="{{ asset('storage/' . $plate->image) }}"
+                                    alt="{{ $plate->slug }}">
+                            @else
+                                <img class="img-fluid icon" src="https://via.placeholder.com/600x300.png?text=Image"
+                                    alt="placeholder">
+                            @endif
+                        </div>
+                        <!-- image -->
+                        <div class="title text-center mt-4">
+                            <h2>{{ $plate->name }}</h2>
+                            <!-- name -->
+                            <p>
+                                {{ $plate->description }}
+                            </p>
+                            <!-- description -->
+                        </div>
+
+                        <h4 class="text-center">
+                            <strong class="numb">{{ $plate->price }}&euro;</strong>
+                        </h4>
+                        <div class="button d-flex align-self-baseline">
+                            <a class="btn btn-soft" href="#">+</a>
+                        </div>
+                        <!-- button -->
+                    </div>
+                </div>
+                <!-- col -->
+            @empty
+                <p>
+                    No Plates Avilable
+                </p>
+            @endforelse
+
         </div>
     </div>
 @endsection
