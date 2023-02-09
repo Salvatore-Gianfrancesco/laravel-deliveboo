@@ -12,10 +12,26 @@ main {
         }
     }
 
+    .btn-small {
+        background-color: $primary_soft;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        line-height: 33px;
+
+        &:hover {
+            background-color: $primary_soft;
+
+            color: $light;
+        }
+    }
+
+    // PRICES
     .numb {
         color: $primary;
     }
 
+    // DASHBOARD BANNER
     #banner {
         height: 400px;
         position: relative;
@@ -29,38 +45,6 @@ main {
             background-color: rgba(0, 0, 0, 0.465);
             height: 100%;
         }
-    }
-
-
-    .marketing {
-
-        .food {
-            margin-bottom: 5rem;
-        }
-
-        .card {
-            border: 1px solid $primary;
-            width: 100%;
-            height: 100%;
-
-            &:hover {
-                border: 1px solid transparent;
-                box-shadow: 0 0 10px $primary;
-            }
-
-            .icon {
-                width: 200px;
-                height: 200px;
-                border-radius: 50%;
-                object-fit: cover;
-                object-position: right;
-            }
-
-            p {
-                height: 100px;
-            }
-
-        }
 
         hr {
             color: $primary;
@@ -70,53 +54,133 @@ main {
             margin-top: 0;
             margin-bottom: 1.5rem;
         }
+    }
 
-        .view_all {
+    .view_all {
 
-            h4,
-            a {
-                color: $primary;
-            }
-
-            a {
-                text-decoration: none;
-            }
+        h4,
+        a {
+            color: $primary;
         }
 
-        .bill {
-            width: 150px;
-            margin-bottom: 1rem;
-        }
-
-        #view_orders {
-            .line {
-                color: black;
-                height: 1px;
-                margin-bottom: 1rem;
-            }
-
-            .card {
-                border: 1px solid $primary;
-                width: 100%;
-                height: 100%;
-
-                &:hover {
-                    border: 1px solid transparent;
-                    box-shadow: 0 0 10px $primary;
-                }
-            }
-
-            .order {
-                img {
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    border: 2px solid $primary;
-                    padding: 0.2rem;
-                    object-fit: cover;
-                }
-
-            }
+        a {
+            text-decoration: none;
         }
     }
+
+    // row PLATES
+    .plates {
+        margin-bottom: 5rem;
+
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        p {
+            height: fit-content;
+        }
+
+        h3 {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+        }
+    }
+
+    // row ORDERS
+    .orders {
+        .line {
+            color: black;
+            height: 1px;
+            margin-bottom: 1rem;
+        }
+    }
+
+
+    .card {
+        border: 1px solid $primary;
+        width: 100%;
+        height: 100%;
+
+        &:hover {
+            border: 1px solid transparent;
+            box-shadow: 0 0 10px $primary;
+            cursor: pointer;
+        }
+
+        // row ORDERS
+        .restaurant_name h4 {
+            color: $primary;
+        }
+
+        .order_menu .icon {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .order_number i {
+            font-size: 70px;
+            margin-bottom: 0.5rem;
+        }
+
+        .order_menu .order_plates {
+            height: 150px;
+        }
+
+        // ACTIONS SHOW EDIT DELETE
+        .action_buttons {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: -8px;
+            left: -0.01rem;
+
+            a {
+                margin-right: 0.2rem;
+            }
+        }
+
+        &:hover .action_buttons {
+            display: block;
+            background-color: rgb(250 189 47 / 44%);
+        }
+
+        // ORDER STATUS
+        .btn-delivering {
+            background-color: rgba(255, 0, 0, 0.118);
+            border: 1px solid red;
+            color: red;
+            padding: 0.3rem 2.5rem;
+
+            &:hover {
+                background-color: red;
+                color: $light;
+            }
+        }
+
+        .btn-completed {
+            background-color: rgba(0, 255, 47, 0.187);
+            border: 1px solid rgb(31, 193, 118);
+            color: rgb(31, 191, 117);
+            padding: 0.3rem 2.5rem;
+
+            &:hover {
+                background-color: rgb(31, 191, 117);
+                color: $light;
+            }
+        }
+
+
+    }
+
+
 }
