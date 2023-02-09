@@ -13,6 +13,7 @@
     border-color: $primary;
     color: $light;
     font-weight: 400;
+    padding: 0.5rem;
 
     &:hover {
         background-color: $primary_soft;
@@ -26,4 +27,3 @@
 selected {
     background-color: $primary;
 }
-

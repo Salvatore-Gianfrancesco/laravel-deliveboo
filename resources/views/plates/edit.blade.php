@@ -48,14 +48,14 @@
 
             {{-- visibility --}}
             <div class="form-check form-switch mb-3">
-                <input class="form-check-input @error('visibility') is-invalid @enderror" type="checkbox" role="switch"
-                    name="visibility" id="visibility" {{ old('visibility', $plate->visibility) ? 'checked' : '' }}>
-                <label class="form-check-label" for="visibility">
+                <label class="form-check-label visibility" for="visibility">
                     Visibile?
                 </label>
+                <input class="form-check-input @error('visibility') is-invalid @enderror" type="checkbox" role="switch"
+                    name="visibility" id="visibility" {{ old('visibility', $plate->visibility) ? 'checked' : '' }}>
             </div>
 
-            <button type="submit" class="btn btn-primary">Salva</button>
+            <button type="submit" class="btn btn_orange">Salva</button>
         </form>
     </div>
 @endsection

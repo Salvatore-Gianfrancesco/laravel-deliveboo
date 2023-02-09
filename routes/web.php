@@ -27,7 +27,7 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('plates', PlateController::class);
     Route::resource('restaurant', RestaurantController::class)->except('show', 'create', 'store', 'destroy');
-    Route::resource('orders', OrderController::class);
+    Route::resource('orders', OrderController::class)->except('store', 'create', 'edit', 'update');
 });
 
 require __DIR__ . '/auth.php';

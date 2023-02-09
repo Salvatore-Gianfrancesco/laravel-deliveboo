@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-between align-items-start mb-3">
             <h1>Piatti</h1>
             <div>
-                <a class="btn btn-soft" href="{{ route('admin.plates.create') }}">Aggiungi un nuovo Piatto</a>
+                <a class="btn btn_orange" href="{{ route('admin.plates.create') }}">Aggiungi un nuovo Piatto</a>
             </div>
         </div>
 

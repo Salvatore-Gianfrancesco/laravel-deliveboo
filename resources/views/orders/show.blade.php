@@ -29,6 +29,21 @@
                 {{ $order->client_phone }}
             </div>
 
+            <div class="lead">
+                <strong>Articoli</strong>:
+                @forelse ($order->plates as $plate )
+                <ul>
+                    <li>
+                        {{ $plate->name }} x1
+                    </li>
+                </ul>
+                    @empty
+
+                    @endforelse
+            </div>
+            {{-- items --}}
+
+
             {{-- total_amount --}}
             <div class="lead">
                 <strong>Prezzo</strong>:

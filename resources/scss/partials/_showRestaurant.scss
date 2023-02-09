@@ -8,21 +8,28 @@ main {
         &:hover {
             background-color: $primary_soft;
 
+
             color: $light;
         }
     }
 
     .btn-small {
-        background-color: $primary_soft;
+        background-color: $light;
         border-radius: 50%;
         width: 45px;
         height: 45px;
         line-height: 33px;
+        color: $primary_soft;
 
         &:hover {
             background-color: $primary_soft;
-
             color: $light;
+        }
+
+        &:active {
+            background-color: $primary_soft !important;
+            color: $light !important;
+            border-color: $primary_soft !important;
         }
     }
 
@@ -152,6 +159,7 @@ main {
         &:hover .action_buttons {
             display: block;
             background-color: rgb(250 189 47 / 44%);
+
         }
 
         // ORDER STATUS

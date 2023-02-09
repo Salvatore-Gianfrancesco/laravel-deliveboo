@@ -4,9 +4,9 @@
     <div class="container my-3">
         <div class="d-flex justify-content-between align-items-start mb-3">
             <h1>Ordini</h1>
-            <div>
+           {{--  <div>
                 <a class="btn btn-soft" href="{{ route('admin.orders.create') }}">Aggiungi un nuovo Ordine</a>
-            </div>
+            </div> --}}
         </div>
 
         @include('partials.message')
@@ -55,22 +55,24 @@
                         <!-- delivery -->
                         <div class="order_menu w-100">
                             <div class="order_plates row my-2">
-                                @if (strlen($order->plates) == 1)
-                                    <div class="col-3">
-                                        @if ($order->plates->image)
-                                            <img class="img-fluid icon"
-                                                src="{{ asset('storage/' . $order->plates->image) }}"
-                                                alt="{{ $order->plates->slug }}">
+                                @if (count($order->plates) == 1)
+                                    <div class="align-items-center col-1 d-flex justify-content-end">
+                                        @if ($order->plates[0]->image)
+                                            {{-- <img class="img-fluid icon"
+                                                src="{{ asset('storage/' . $order->plates[0]->image) }}"
+                                                alt="{{ $order->plates[0]->slug }}"> --}}
+                                                <i class="fa-solid fa-circle-check"></i>
                                         @else
-                                            <img class="img-fluid icon"
-                                                src="https://via.placeholder.com/600x300.png?text=Image" alt="placeholder">
+                                        <i class="fa-solid fa-circle-check"></i>
                                         @endif
                                     </div>
                                     <!-- image -->
-                                    <div class="col-9 d-flex align-items-center justify-content-between p-0">
-                                        <div class="quantity">
-                                            <h6><strong>{{ $order->plates[0]->name }}</strong></h6>
-                                            <span>x1</span>
+                                    <div class="align-items-center col-11 d-flex justify-content-between p-0">
+                                        <div class="d-flex quantity">
+                                            <h6 class="mb-0"><strong>{{ $order->plates[0]->name }}</strong>
+                                                <span>x1</span>
+                                            </h6>
+                                            
                                         </div>
                                         <div class="price_order me-3">
                                             <span
@@ -79,17 +81,16 @@
                                     </div>
                                     <!-- details -->
                                 @else
-                                    <div class="col-3">
-                                        {{-- <div class="item">
-                                            <img class="img-fluid" src="../assets/img/hamburger-g3755dde88_1920.jpg"
-                                                alt="">
-                                        </div> --}}
+                                    <div class="align-items-center col-1 d-flex justify-content-end">
+                                        <i class="fa-solid fa-circle-check"></i>
                                     </div>
                                     <!-- image -->
-                                    <div class="col-9 d-flex align-items-center justify-content-between p-0">
-                                        <div class="quantity">
-                                            <h6><strong>{{ $order->plates[0]->name }}</strong></h6>
-                                            <span>x1</span>
+                                    <div class="col-11 d-flex align-items-center justify-content-between p-0">
+                                        <div class="d-flex quantity">
+                                            <h6 class="mb-0"><strong>{{ $order->plates[0]->name }}</strong>
+                                                <span>x1</span>
+                                            </h6>
+                                           
                                         </div>
                                         <div class="price_order me-3">
                                             <span
@@ -98,17 +99,17 @@
                                     </div>
                                     <!-- details -->
 
-                                    <div class="col-3">
-                                        {{-- <div class="item">
-                                            <img class="img-fluid" src="../assets/img/hamburger-g3755dde88_1920.jpg"
-                                                alt="">
-                                        </div> --}}
+                                    <div class="align-items-center col-1 d-flex justify-content-end">
+                                        <i class="fa-solid fa-circle-check"></i>
                                     </div>
                                     <!-- image -->
-                                    <div class="col-9 d-flex align-items-center justify-content-between p-0">
-                                        <div class="quantity">
-                                            <h6><strong>{{ $order->plates[1]->name }}</strong></h6>
-                                            <span>x1</span>
+                                    <div class="col-11 d-flex align-items-center justify-content-between p-0">
+                                        <div class="d-flex quantity">
+                                            <h6 class="mb-0">
+                                                <strong>{{ $order->plates[1]->name }}</strong>
+                                                <span>x1</span>
+                                            </h6>
+                                            
                                         </div>
                                         <div class="price_order me-3">
                                             <span
@@ -141,9 +142,9 @@
                                 </a>
                                 <!-- show -->
 
-                                <a class="btn btn-small" href="{{ route('admin.orders.edit', $order->id) }}">
+                                {{-- <a class="btn btn-small" href="{{ route('admin.orders.edit', $order->id) }}">
                                     <i class="fas fa-pencil fa-sm fa-fw"></i>
-                                </a>
+                                </a> --}}
                                 <!-- edit -->
 
                                 <button type="button" class="btn btn-small" data-bs-toggle="modal"
@@ -186,7 +187,7 @@
                     </div>
                 </div>
             @empty
-                <p>No Orders Available</p>
+                <p>Non ci sono Ordini disponibili</p>
             @endforelse
         </div>
         <!-- col -->
