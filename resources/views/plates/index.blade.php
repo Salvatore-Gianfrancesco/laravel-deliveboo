@@ -58,38 +58,37 @@
                                 </button>
                                 <!-- delete -->
 
-                                <div class="modal fade" id="deleteplate-{{ $plate->id }}" tabindex="-1"
-                                    data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
-                                    aria-labelledby="modalplateId-{{ $plate->id }}" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
-                                        role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title text-dark" id="modalplateId-{{ $plate->id }}">
-                                                    Eliminazione piatto</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body text-dark">
-                                                Sei sicuro di voler eliminare questo piatto? Attenzione: l'azione è
-                                                irreversibile!
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Annulla</button>
-                                                <form action="{{ route('admin.plates.destroy', $plate->id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('DELETE')
+                            </div>
 
-                                                    <button type="submit" class="btn btn-danger">Elimina</button>
-                                                </form>
-                                            </div>
-                                        </div>
+                        </div>
+                        <div class="modal fade" id="deleteplate-{{ $plate->id }}" tabindex="-1"
+                            data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                            aria-labelledby="modalplateId-{{ $plate->id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                                role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-dark" id="modalplateId-{{ $plate->id }}">
+                                            Eliminazione piatto</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-dark">
+                                        Sei sicuro di voler eliminare questo piatto? Attenzione: l'azione è
+                                        irreversibile!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Annulla</button>
+                                        <form action="{{ route('admin.plates.destroy', $plate->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button type="submit" class="btn btn-danger">Elimina</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <!-- buttons -->
                     </div>
