@@ -1,5 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
 @import './partials/variables';
+@import './partials/login';
 
 // @import './partials/sidebar';
 @import './partials/showRestaurant';
@@ -20,3 +21,32 @@
         }
     }
 }
+
+
+.navbar-laravel {
+    background-color: $primary;
+
+    .nav-link {
+        color: $light;
+        font-weight: 500;
+    }
+
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+
+}
+
+.navbar-toggler:focus {
+    box-shadow: #ffffff4e;
+    color: $light;
+
+}
+
+.navbar-toggler:checked {
+    box-shadow: #ffffff4e;
+    color: $light;
+
+}
+
