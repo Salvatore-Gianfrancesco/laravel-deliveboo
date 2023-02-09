@@ -81,7 +81,14 @@ main {
         }
 
         p {
-            height: 150px;
+            height: fit-content;
+        }
+
+        h3 {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: end;
         }
     }
 

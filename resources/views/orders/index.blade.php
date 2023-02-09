@@ -13,7 +13,7 @@
 
         <div class="row orders">
             @forelse($orders as $order)
-                <div class="col-lg-4 col-sm-2 g-4">
+                <div class="col-sm-6 col-lg-4  g-4">
                     <div class="card p-3 d-flex flex-column align-items-center justify-content-between">
 
                         <div class="order_number text-center w-75">

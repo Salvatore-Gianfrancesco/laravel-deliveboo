@@ -13,7 +13,7 @@
 
         <div class="row plates">
             @forelse($plates as $plate)
-                <div class="col-lg-4 g-4">
+                <div class="col-sm-6 col-lg-4 g-4">
                     <div class="card p-3">
                         <div class="image d-flex justify-content-center">
                             @if ($plate->image)
@@ -23,6 +23,7 @@
                                 <img class="img-fluid" src="https://via.placeholder.com/600x300.png?text=Image"
                                     alt="placeholder">
                             @endif
+
                         </div>
                         <!-- image -->
                         <div class="title text-center mt-4">
