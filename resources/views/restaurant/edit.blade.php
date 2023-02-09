@@ -35,11 +35,11 @@
                     @forelse ($types as $type)
                         @if ($errors->any())
                             <option value="{{ $type->id }}"
-                                {{ in_array($type->id, old('types', [])) ? 'selected' : '' }}>
+                               {{ in_array($type->id, old('types', [])) ? 'selected' : '' }}>
                                 {{ $type->name }}</option>
                         @else
                             <option value="{{ $type->id }}"
-                                {{ $restaurant->types->contains($type->id) ? 'selected' : '' }}>
+                               {{ $restaurant->types->contains($type->id) ? 'selected' : '' }}>
                                 {{ $type->name }}</option>
                         @endif
                     @empty
@@ -100,7 +100,7 @@
             </div>
 
             {{-- submit button --}}
-            <button type="submit" class="btn btn-primary mt-3 mb-5">Update</button>
+            <button type="submit" class="btn btn_orange mt-3 mb-5">Aggiorna</button>
         </form>
     </div>
 @endsection
