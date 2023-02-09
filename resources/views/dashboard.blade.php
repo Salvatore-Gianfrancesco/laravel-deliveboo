@@ -139,96 +139,106 @@
             <div class="container marketing mt-5">
 
                 <!-- Three columns of food-->
-                <div class="row food">
+                <div class="row food pb-5">
                     <div class="view_all d-flex justify-content-between align-items-baseline">
                         <h4>Piatti</h4> <a href="{{ route('admin.plates.index') }}">Vedi tutto</a>
                     </div>
                     <hr>
+
+                    @if (count($restaurant->plates) <= 3 )
+                    @forelse ($restaurant->plates as $plate )
+
+
                     <div class="col-lg-4 g-4">
-                        <div class="card p-3">
+                        <div class="card p-3 d-flex justify-content-center text-center">
                             <!-- image -->
-                            <div class="image d-flex justify-content-center">
-                                <img class="img-fluid icon" src="../assets/img/hamburger-g3755dde88_1920.jpg"
-                                    alt="">
+                            <div class="icons_dash d-flex justify-content-center">
+                                <i class="fa-solid fa-utensils"></i>
                             </div>
                             <!-- title -->
-                            <h2>Hamburger</h2>
+                            <h2>{{ $plate->name }}</h2>
                             <!-- description -->
                             <p>
-                                Some representative placeholder content for the three columns of
-                                text below the
-                                carousel. This is the first column.
+                                {{ $plate->description }}
                             </p>
+
+                            <h3 class="text-center">
+                                <strong class="numb">{{ $plate->price }}&euro;</strong>
+                            </h3>
+                            {{-- price --}}
+                            
                             <!-- button -->
-                            <div class="button d-flex align-self-baseline">
-                                <a class="btn btn-soft" href="#">+</a>
+                            <div class="button d-flex align-self-center">
+                                <a class="btn btn_orange" href="{{ route('admin.plates.show', $plate->id) }}"></a>
                             </div>
                         </div>
                     </div>
                     <!-- col -->
 
-                    <div class="col-lg-4 g-4">
-                        <div class="card p-3">
-                            <div class="image d-flex justify-content-center">
-                                <img class="img-fluid icon" src="../assets/img/hamburger-g44f50ce8d_1920.jpg"
-                                    alt="">
-                            </div>
-                            <!-- image -->
-                            <h2>Hamburger</h2>
-                            <!-- title -->
-                            <p>
-                                Another exciting bit of representative placeholder content. This time, we've
-                                moved on
-                                to the second column.
-                            </p>
-                            <!-- description -->
-                            <div class="button d-flex align-self-baseline">
-                                <a class="btn btn-soft" href="#">+</a>
-                            </div>
-                            <!-- button -->
-                        </div>
-                    </div>
-                    <!-- col -->
+                    @empty
+
+                    <h2>Non ci sono Piatti</h2>
+                    @endforelse
+
+                    @else
+
+                    @for ($i= count($restaurant->plates)-1; $i>count($restaurant->plates)-4; $i--)
+
 
                     <div class="col-lg-4 g-4">
-                        <div class="card p-3">
-                            <div class="image d-flex justify-content-center">
-                                <img class="img-fluid icon" src="../assets/img/plate-gdb96679aa_1920.jpg" alt="">
-                            </div>
+                        <div class="card d-flex justify-content-center p-3 text-center">
                             <!-- image -->
-                            <h2>Pizza</h2>
-                            <!-- title -->
-                            <p>
-                                Another exciting bit of representative place
-                            </p>
-                            <!-- description -->
-                            <div class="button d-flex align-self-baseline">
-                                <a class="btn btn-soft"  href="">+</a>
+                            <div class="icons_dash d-flex justify-content-center">
+                                <i class="fa-solid fa-utensils"></i>
                             </div>
+                            <!-- title -->
+                            <h2>{{ $restaurant->plates[$i]->name}}</h2>
+                            <!-- description -->
+                            <p>
+                                {{ $restaurant->plates[$i]->description }}
+                            </p>
+
+                            <h3 class="text-center">
+                                <strong class="numb">{{ $restaurant->plates[$i]->price }}&euro;</strong>
+                            </h3>
+                            {{-- price --}}
+                            
                             <!-- button -->
+                            <div class="button ">
+                                <a class="btn btn_orange" href="{{ route('admin.plates.show', $restaurant->plates[$i]->id) }}">Visualizza i dettagli &raquo;</a>
+                            </div>
                         </div>
                     </div>
-                    <!-- col -->
+                        
+                    @endfor
+
+
+                        
+                    @endif
+
                 </div>
                 <!-- row FOOD-->
 
                 <!-- Three columns of ORDERS-->
-                <div class="row orders">
+                <div class="row orders pb-5">
                     <div class="view_all d-flex justify-content-between align-items-baseline">
                         <h4>Ordini</h4> <a href="{{ route('admin.orders.index') }}">Vedi tutto</a>
                     </div>
                     <hr>
+
+                    @if (count($restaurant->orders) <= 3 )
+                    @forelse ($restaurant->orders as $order )
                     <div class="col-lg-4 col-sm-2 g-4">
                         <div class="card p-3 d-flex align-items-center">
-                            <div class="image">
-                                <img class="img-fluid bill" src="../assets/img/check.png" alt="">
+                            <div class="icons_dash">
+                                <i class="fa-sharp fa-regular fa-file-lines"></i>
                             </div>
                             <!-- image -->
-                            <h2 class="my-2">Order #1</h2>
+                            <h2 class="my-2">Ordine #{{ $order->id }}</h2>
                             <!-- title -->
                             <div class="price mt-3">
                                 <h5>
-                                    <strong class="numb">Total: 25,90&euro;</strong>
+                                    <strong class="numb">Totale: {{ $order->total_amount }}&euro;</strong>
                                 </h5>
                             </div>
                             <!-- price -->
@@ -236,59 +246,56 @@
                                 <span>2.5km - 10min</span>
                             </div>
                             <!-- details -->
-                            <a class="btn btn-soft" href="#">View details &raquo;</a>
-                            <!-- button -->
+                            <a class="btn btn_orange" href="{{ route('admin.orders.show', $order->id) }}">Visualizza i dettagli &raquo;</a>
+                            <!-- button-->
+                            
                         </div>
                     </div>
+
+                    @empty
+
+                    <h2>Non ci sono Ordini</h2>
+                    @endforelse
+
+                    @else
+
+                    @for ($i= count($restaurant->orders)-1; $i>count($restaurant->orders)-4; $i--)
+
+                        <div class="col-lg-4 col-sm-2 g-4">
+                            <div class="card p-3 d-flex align-items-center">
+                                <div class="icons_dash">
+                                    <i class="fa-sharp fa-regular fa-file-lines"></i>
+                                </div>
+                                <!-- image -->
+                                <h2 class="my-2">Ordine #{{ $restaurant->orders[$i]->id }}</h2>
+                                <!-- title -->
+                                <div class="price mt-3">
+                                    <h5>
+                                        <strong class="numb">Totale: {{ $restaurant->orders[$i]->total_amount }}&euro;</strong>
+                                    </h5>
+                                </div>
+                                <!-- price -->
+                                <div class="details my-3">
+                                    <span>2.5km - 10min</span>
+                                </div>
+                                <!-- details -->
+                                <a class="btn btn_orange" href="{{ route('admin.orders.show', $restaurant->orders[$i]->id) }}">Visualizza i dettagli &raquo;</a>
+                                <!-- button-->
+                                
+                            </div>
+                        </div>
+
+                    
+
+                        
+                    @endfor
+
+
+                        
+                    @endif
+                   
                     <!-- col -->
 
-                    <div class="col-lg-4 col-sm-2 g-4">
-                        <div class="card p-3 d-flex align-items-center">
-                            <div class="image">
-                                <img class="img-fluid bill" src="../assets/img/check.png" alt="">
-                            </div>
-                            <!-- image -->
-                            <h2 class="my-2">Order #2</h2>
-                            <!-- title -->
-                            <div class="price mt-3">
-                                <h5>
-                                    <strong class="numb">Total: 25,90&euro;</strong>
-                                </h5>
-                            </div>
-                            <!-- price -->
-                            <div class="details my-3">
-                                <span>2.5km - 10min</span>
-                            </div>
-                            <!-- details -->
-                            <a class="btn btn-soft" href="#">View details &raquo;</a>
-                            <!-- button -->
-                        </div>
-                    </div>
-                    <!-- col -->
-
-                    <div class="col-lg-4 col-sm-2 g-4">
-                        <div class="card p-3 d-flex align-items-center">
-                            <div class="image">
-                                <img class="img-fluid bill" src="../assets/img/check.png" alt="">
-                            </div>
-                            <!-- image -->
-                            <h2 class="my-2">Order #3</h2>
-                            <!-- title -->
-                            <div class="price my-2">
-                                <h5>
-                                    <strong class="numb">Total: 25,90&euro;</strong>
-                                </h5>
-                            </div>
-                            <!-- price -->
-                            <div class="details my-3">
-                                <span>2.5km - 10min</span>
-                            </div>
-                            <!-- details -->
-                            <a class="btn btn-soft" href="#">View details &raquo;</a>
-                            <!-- button -->
-                        </div>
-                    </div>
-                    <!-- col -->
                 </div>
                 <!-- ROW ORDERS-->
 

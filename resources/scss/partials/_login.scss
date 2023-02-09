@@ -7,7 +7,7 @@
 .form-check-input:focus {
     box-shadow: 0 0 0 0.25rem rgb(253 184 13 / 25%) !important;
     border-color: #f5a606 !important;
-    color: $dark;
+    color: $dark !important;
 }
 
 .login-box {
@@ -196,6 +196,10 @@
 
 .form-check-label {
     color: #fff;
+}
+
+.visibility {
+    color: $dark;
 }
 
 .button-text {
