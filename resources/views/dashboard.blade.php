@@ -1,8 +1,16 @@
 @extends('layouts.index')
 
 @section('content')
+
+    <div class="right">
+        <div class="background-corner">
+            <div class="background-corner up"></div>
+
+        </div>
+    </div>  
     <div class="container-fluid py-5">
         <div class="row">
+            
             {{-- <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
             <div class="position-sticky pt-3 sidebar-sticky">
                 <ul class="nav flex-column">
@@ -28,10 +36,15 @@
             </div>
         </nav> --}}
 
-            <div id="banner">
+            <div class="banner">
+                <div class="banner_img">
+                    <img src="{{asset('storage/img/back_banner.png' )}}" alt="">
+                </div>
+
+
                 <div class="info">
-                    <div class="container">
-                        <div class="carousel-caption text-end">
+                    <div class="align-items-end container d-flex h-100 justify-content-end">
+                        <div class="pb-4 px-4 text-black">
                             
                             <!-- title -->
                             <h1>{{ $restaurant->company_name }}</h1>
@@ -40,20 +53,38 @@
                 </div>
             </div>
             <div class="container d-flex flex-column gap-3 my-3">
-                <div class="d-flex justify-content-between align-items-start">
-                    {{-- company_name --}}
-                    <h1>{{ $restaurant->company_name }}</h1>
-        
-                    {{-- edit route button --}}
-                    <div>
-                        <a class="btn btn-primary" href="{{ route('admin.restaurant.edit', $restaurant->id) }}">Modifica i dati</a>
+                <div class="marketing">
+                    <div class="data-info d-flex justify-content-between align-items-center">
+                       {{-- company_name --}}
+                       <h1>I miei Dati</h1>
+    
+                       {{-- edit route button --}}
+                       <div>
+                        <a class="btn btn_orange" href="{{ route('admin.restaurant.edit', $restaurant->id) }}">
+                            <span>
+                                Modifica i dati
+                            </span> 
+    
+                            <i class="fa-solid fa-pen-to-square"></i>
+    
+                        </a>
+                        </div>
+                    
+                        
+    
                     </div>
+                    <hr>
+
                 </div>
-        
+
+                
                 {{-- image --}}
-                @if ($restaurant->image)
-                    <img src="{{ asset('storage/' . $restaurant->image) }}" alt="{{ $restaurant->slug }}" width="500">
-                @endif
+                <div class="logo-user">
+                    @if ($restaurant->image)
+                        <img src="{{ asset('storage/' . $restaurant->image) }}" alt="{{ $restaurant->slug }}">
+                    @endif
+
+                </div>
         
                 {{-- description --}}
                 <div class="lead">
@@ -103,20 +134,14 @@
                     {{ $restaurant->closing_time ? $restaurant->closing_time : 'NOT SET' }}
                 </div>
             </div>
-                    <div class="col">
-
-                    </div>
-                    <div class="col">
-
-                    </div>
-                </div>
-            </div>
+                    
+            
             <div class="container marketing mt-5">
 
                 <!-- Three columns of food-->
                 <div class="row food">
                     <div class="view_all d-flex justify-content-between align-items-baseline">
-                        <h4>Food</h4> <a href="{{ route('admin.plates.index') }}">Vedi tutto</a>
+                        <h4>Piatti</h4> <a href="{{ route('admin.plates.index') }}">Vedi tutto</a>
                     </div>
                     <hr>
                     <div class="col-lg-4 g-4">
@@ -190,7 +215,7 @@
                 <!-- Three columns of ORDERS-->
                 <div class="row orders">
                     <div class="view_all d-flex justify-content-between align-items-baseline">
-                        <h4>Orders</h4> <a href="{{ route('admin.orders.index') }}">Vedi tutto</a>
+                        <h4>Ordini</h4> <a href="{{ route('admin.orders.index') }}">Vedi tutto</a>
                     </div>
                     <hr>
                     <div class="col-lg-4 col-sm-2 g-4">

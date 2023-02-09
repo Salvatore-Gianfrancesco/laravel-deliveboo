@@ -1,52 +1,29 @@
 @import '~bootstrap/scss/bootstrap';
 @import './partials/variables';
 @import './partials/login';
+@import './partials/sidebar';
+@import './partials/dashboard';
 
 // @import './partials/sidebar';
 @import './partials/showRestaurant';
 
-#sidebarMenu {
-    height: calc(100vh - 3.5rem);
 
-    .nav-link {
-        font-weight: 500;
-        color: #333;
-
-        &:hover {
-            color: #2470dc;
-        }
-
-        &.active {
-            color: #2470dc;
-        }
-    }
-}
-
-
-.navbar-laravel {
+.btn_orange {
     background-color: $primary;
+    border-color: $primary;
+    color: $light;
+    font-weight: 400;
 
-    .nav-link {
+    &:hover {
+        background-color: $primary_soft;
+        border-color: $primary_soft;
         color: $light;
-        font-weight: 500;
+        font-weight: 400;
+
     }
-
 }
 
-.navbar-toggler-icon {
-    filter: invert(1);
-
-}
-
-.navbar-toggler:focus {
-    box-shadow: #ffffff4e;
-    color: $light;
-
-}
-
-.navbar-toggler:checked {
-    box-shadow: #ffffff4e;
-    color: $light;
-
+selected {
+    background-color: $primary;
 }
 
