@@ -11,16 +11,16 @@
 
         @include('partials.message')
 
-        <div class="row food">
+        <div class="row plates">
             @forelse($plates as $plate)
                 <div class="col-lg-4 g-4">
                     <div class="card p-3">
                         <div class="image d-flex justify-content-center">
                             @if ($plate->image)
-                                <img class="img-fluid icon" src="{{ asset('storage/' . $plate->image) }}"
+                                <img class="img-fluid" src="{{ asset('storage/' . $plate->image) }}"
                                     alt="{{ $plate->slug }}">
                             @else
-                                <img class="img-fluid icon" src="https://via.placeholder.com/600x300.png?text=Image"
+                                <img class="img-fluid" src="https://via.placeholder.com/600x300.png?text=Image"
                                     alt="placeholder">
                             @endif
                         </div>
