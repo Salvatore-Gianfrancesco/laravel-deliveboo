@@ -38,7 +38,11 @@
 
             <div class="banner">
                 <div class="banner_img">
-                    <img src="{{ asset('storage/img/back_banner.png') }}" alt="">
+                    @if ($restaurant->image)
+                        <img src="{{ asset('storage/' . $restaurant->image) }}" alt="">
+                    @else
+                        <img src="https://via.placeholder.com/600x300.png?text=Image" alt="">
+                    @endif
                 </div>
 
                 <div class="info">
@@ -82,7 +86,7 @@
                 {{-- description --}}
                 <div class="lead">
                     <strong>Descrizione</strong>:
-                    {{ $restaurant->description ? $restaurant->description : 'NOT SET' }}
+                    {{ $restaurant->description ? $restaurant->description : 'Nessuna descrizione' }}
                 </div>
 
                 {{-- types --}}
@@ -93,26 +97,26 @@
                             <span>{{ $type->name }} </span>
                         @endforeach
                     @else
-                        <span>No type</span>
+                        <span>Nessun tipo registrato</span>
                     @endif
                 </div>
 
                 {{-- address --}}
                 <div class="lead">
                     <strong>Indirizzo</strong>:
-                    {{ $restaurant->address ? $restaurant->address : 'NOT SET' }}
+                    {{ $restaurant->address }}
                 </div>
 
                 {{-- piva --}}
                 <div class="lead">
                     <strong>P-IVA</strong>:
-                    {{ $restaurant->piva ? $restaurant->piva : 'NOT SET' }}
+                    {{ $restaurant->piva }}
                 </div>
 
                 {{-- min_order --}}
                 <div class="lead">
                     <strong>Ordine minimo</strong>:
-                    {{ $restaurant->min_order ? "$restaurant->min_order €" : 'NOT SET' }}
+                    {{ $restaurant->min_order }} €
                 </div>
 
                 {{-- delivery --}}
@@ -124,7 +128,7 @@
                 {{-- closing_time --}}
                 <div class="lead">
                     <strong>Orario di chiusura</strong>:
-                    {{ $restaurant->closing_time ? $restaurant->closing_time : 'NOT SET' }}
+                    {{ $restaurant->closing_time ? $restaurant->closing_time : 'Non registrato' }}
                 </div>
             </div>
 
@@ -143,9 +147,20 @@
                             <div class="col-lg-4 g-4">
                                 <div class="card p-3 d-flex justify-content-center text-center">
                                     <!-- image -->
-                                    <div class="icons_dash d-flex justify-content-center">
+                                    {{-- <div class="icons_dash d-flex justify-content-center">
                                         <i class="fa-solid fa-utensils"></i>
+                                    </div> --}}
+                                    <div class="image d-flex justify-content-center">
+                                        @if ($plate->image)
+                                            <img class="img-fluid dashboard_plates mb-3"
+                                                src="{{ asset('storage/' . $plate->image) }}" alt="{{ $plate->slug }}">
+                                        @else
+                                            <img class="img-fluid dashboard_plates mb-3"
+                                                src="https://via.placeholder.com/600x300.png?text=Image" alt="placeholder">
+                                        @endif
+
                                     </div>
+
                                     <!-- title -->
                                     <h2>{{ $plate->name }}</h2>
                                     <!-- description -->
@@ -160,7 +175,9 @@
 
                                     <!-- button -->
                                     <div class="button d-flex align-self-center">
-                                        <a class="btn btn_orange" href="{{ route('admin.plates.show', $plate->id) }}"></a>
+                                        <a class="btn btn_orange"
+                                            href="{{ route('admin.plates.show', $plate->id) }}">Visualizza
+                                            i dettagli &raquo;</a>
                                     </div>
                                 </div>
                             </div>
@@ -173,8 +190,19 @@
                             <div class="col-lg-4 g-4">
                                 <div class="card d-flex justify-content-center p-3 text-center">
                                     <!-- image -->
-                                    <div class="icons_dash d-flex justify-content-center">
+                                    {{-- <div class="icons_dash d-flex justify-content-center">
                                         <i class="fa-solid fa-utensils"></i>
+                                    </div> --}}
+                                    <div class="image d-flex justify-content-center">
+                                        @if ($restaurant->plates[$i]->image)
+                                            <img class="img-fluid dashboard_plates mb-3"
+                                                src="{{ asset('storage/' . $restaurant->plates[$i]->image) }}"
+                                                alt="{{ $restaurant->plates[$i]->slug }}">
+                                        @else
+                                            <img class="img-fluid dashboard_plates mb-3"
+                                                src="https://via.placeholder.com/600x300.png?text=Image" alt="placeholder">
+                                        @endif
+
                                     </div>
 
                                     <!-- title -->

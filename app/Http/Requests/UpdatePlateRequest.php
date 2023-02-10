@@ -30,8 +30,8 @@ class UpdatePlateRequest extends FormRequest
                 Rule::unique('plates')->ignore($this->plate->id),
                 'max:100'
             ],
-            'description' => 'nullable|max:10000',
-            'price' => 'nullable|numeric|between:0,999',
+            'description' => 'required|max:10000',
+            'price' => 'required|numeric|between:0,999',
             'visibility' => 'nullable',
             'image' => 'nullable|image'
         ];
@@ -41,7 +41,9 @@ class UpdatePlateRequest extends FormRequest
         return [
             'name.required' => 'Il nome del piatto è obbligatorio',
             'name.max' => 'Il nome del piatto deve essere di massimo :max caratteri',
+            'description.required' => 'La descrizione del piatto è obbligatoria',
             'description.max' => 'La descrizione deve essere di massimo :max caratteri',
+            'price.required' => 'Il prezzo è obbligatorio',
             'price.numeric' => 'Il prezzo deve essere un valore numerico',
             'price.between' => 'Il prezzo deve essere compreso tra 0 e 999',
             'image.image' => 'L\'immagine inserita non è nel formato corretto'

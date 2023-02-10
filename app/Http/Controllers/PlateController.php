@@ -18,7 +18,7 @@ class PlateController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $plates = Plate::where('restaurant_id', '=', $user->id)->get();
+        $plates = Plate::where('restaurant_id', '=', $user->id)->paginate(6);
 
         return view('plates.index', compact('plates'));
     }
@@ -140,7 +140,7 @@ class PlateController extends Controller
             Storage::delete($plate->image);
         }
         $plate->delete();
-        
+
         return to_route('admin.plates.index');
     }
 }

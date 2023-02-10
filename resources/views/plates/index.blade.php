@@ -100,6 +100,38 @@
                 </p>
             @endforelse
 
+            @if ($plates->lastPage() !== 1)
+                <div class="plates_pagination d-flex gap-1 mt-3">
+                    {{-- first page --}}
+                    <a href="http://127.0.0.1:8000/admin/plates?page=1"
+                        class="btn btn_orange {{ $plates->currentPage() === 1 ? 'disabled' : '' }}">
+                        <i class="fa-solid fa-backward-fast"></i>
+                        <span>Prima pagina</span>
+                    </a>
+
+                    {{-- pages (max 3) --}}
+                    <div>
+                        @if ($plates->lastPage() <= 3)
+                            @for ($i = 1; $i <= $plates->lastPage(); $i++)
+                                <a href="http://127.0.0.1:8000/admin/plates?page={{ $i }}"
+                                    class="btn btn_orange px_4 {{ $plates->currentPage() === $i ? 'disabled' : '' }}">{{ $i }}</a>
+                            @endfor
+                        @else
+                            @for ($i = 1; $i <= 3; $i++)
+                                <a href="http://127.0.0.1:8000/admin/plates?page={{ $i }}"
+                                    class="btn btn_orange px_4 {{ $plates->currentPage() === $i ? 'disabled' : '' }}">{{ $i }}</a>
+                            @endfor
+                        @endif
+                    </div>
+
+                    {{-- last page --}}
+                    <a href="http://127.0.0.1:8000/admin/plates?page={{ $plates->lastPage() }}"
+                        class="btn btn_orange {{ $plates->currentPage() === $plates->lastPage() ? 'disabled' : '' }}">
+                        <i class="fa-solid fa-forward-fast"></i>
+                        <span>Ultima pagina</span>
+                    </a>
+                </div>
+            @endif
         </div>
     </div>
 @endsection
