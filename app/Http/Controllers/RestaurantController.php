@@ -102,7 +102,7 @@ class RestaurantController extends Controller
             $restaurant->types()->sync($val_data['types']);
         }
 
-        return to_route('admin.restaurant.index', $restaurant->id);
+        return to_route('admin.dashboard', compact('restaurant'));
     }
 
     /**

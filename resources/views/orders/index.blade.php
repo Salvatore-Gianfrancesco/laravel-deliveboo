@@ -4,9 +4,42 @@
     <div class="container my-3">
         <div class="d-flex justify-content-between align-items-start mb-3">
             <h1>Ordini</h1>
-           {{--  <div>
+            {{--  <div>
                 <a class="btn btn-soft" href="{{ route('admin.orders.create') }}">Aggiungi un nuovo Ordine</a>
             </div> --}}
+
+            @if ($orders->lastPage() !== 1)
+                <div class="orders_pagination d-flex gap-1">
+                    {{-- first page --}}
+                    <a href="http://127.0.0.1:8000/admin/orders?page=1"
+                        class="btn btn_orange {{ $orders->currentPage() === 1 ? 'disabled' : '' }}">
+                        <i class="fa-solid fa-backward-fast"></i>
+                        <span>Prima pagina</span>
+                    </a>
+
+                    {{-- pages (max 3) --}}
+                    <div>
+                        @if ($orders->lastPage() <= 3)
+                            @for ($i = 1; $i <= $orders->lastPage(); $i++)
+                                <a href="http://127.0.0.1:8000/admin/orders?page={{ $i }}"
+                                    class="btn btn_orange px_4 {{ $orders->currentPage() === $i ? 'disabled' : '' }}">{{ $i }}</a>
+                            @endfor
+                        @else
+                            @for ($i = 1; $i <= 3; $i++)
+                                <a href="http://127.0.0.1:8000/admin/orders?page={{ $i }}"
+                                    class="btn btn_orange px_4 {{ $orders->currentPage() === $i ? 'disabled' : '' }}">{{ $i }}</a>
+                            @endfor
+                        @endif
+                    </div>
+
+                    {{-- last page --}}
+                    <a href="http://127.0.0.1:8000/admin/orders?page={{ $orders->lastPage() }}"
+                        class="btn btn_orange {{ $orders->currentPage() === $orders->lastPage() ? 'disabled' : '' }}">
+                        <i class="fa-solid fa-forward-fast"></i>
+                        <span>Ultima pagina</span>
+                    </a>
+                </div>
+            @endif
         </div>
 
         @include('partials.message')
@@ -61,9 +94,9 @@
                                             {{-- <img class="img-fluid icon"
                                                 src="{{ asset('storage/' . $order->plates[0]->image) }}"
                                                 alt="{{ $order->plates[0]->slug }}"> --}}
-                                                <i class="fa-solid fa-circle-check"></i>
+                                            <i class="fa-solid fa-circle-check"></i>
                                         @else
-                                        <i class="fa-solid fa-circle-check"></i>
+                                            <i class="fa-solid fa-circle-check"></i>
                                         @endif
                                     </div>
                                     <!-- image -->
@@ -72,7 +105,7 @@
                                             <h6 class="mb-0"><strong>{{ $order->plates[0]->name }}</strong>
                                                 <span>x1</span>
                                             </h6>
-                                            
+
                                         </div>
                                         <div class="price_order me-3">
                                             <span
@@ -90,7 +123,7 @@
                                             <h6 class="mb-0"><strong>{{ $order->plates[0]->name }}</strong>
                                                 <span>x1</span>
                                             </h6>
-                                           
+
                                         </div>
                                         <div class="price_order me-3">
                                             <span
@@ -109,7 +142,7 @@
                                                 <strong>{{ $order->plates[1]->name }}</strong>
                                                 <span>x1</span>
                                             </h6>
-                                            
+
                                         </div>
                                         <div class="price_order me-3">
                                             <span
@@ -129,9 +162,9 @@
                         </div>
                         <!-- price -->
                         @if ($order->is_delivered == false)
-                            <a class="btn btn-delivering" href="#">Delivering</a>
+                            <div class="rounded-2 btn-delivering" href="#">Delivering</div>
                         @else
-                            <a class="btn btn-completed" href="#">Completed</a>
+                            <div class="rounded-2 btn-completed" href="#">Completed</div>
                         @endif
                         <!-- status -->
 
@@ -142,18 +175,21 @@
                                 </a>
                                 <!-- show -->
 
-                                {{-- <a class="btn btn-small" href="{{ route('admin.orders.edit', $order->id) }}">
+                                <a class="btn btn-small" href="{{ route('admin.orders.edit', $order->id) }}">
                                     <i class="fas fa-pencil fa-sm fa-fw"></i>
-                                </a> --}}
+                                </a>
                                 <!-- edit -->
 
+                                {{--
                                 <button type="button" class="btn btn-small" data-bs-toggle="modal"
                                     data-bs-target="#deleteorder-{{ $order->id }}">
                                     <i class="fa fa-trash fa-sm fa-fw"></i>
                                 </button>
+                                --}}
                                 <!-- delete -->
                             </div>
                         </div>
+                        {{--
                         <div class="modal fade" id="deleteorder-{{ $order->id }}" tabindex="-1"
                             data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
                             aria-labelledby="modalorderId-{{ $order->id }}" aria-hidden="true">
@@ -183,6 +219,7 @@
                                 </div>
                             </div>
                         </div>
+                        --}}
                         <!-- action buttons -->
                     </div>
                 </div>
@@ -192,6 +229,8 @@
         </div>
         <!-- col -->
 
-    </div>
+        {{-- <div class="orders_pagination">
+            {{ $orders->links() }}
+        </div> --}}
     </div>
 @endsection

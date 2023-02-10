@@ -19,7 +19,7 @@
             {{-- description --}}
             <div class="mb-3">
                 <label for="description" class="form-label">Descrizione / Ingredienti</label>
-                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror"
+                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" required
                     maxlength="10000">{{ old('description') }}</textarea>
             </div>
 
@@ -27,7 +27,8 @@
             <div class="mb-3">
                 <label for="price" class="form-label">Prezzo</label>
                 <input type="number" step="0.01" name="price" id="price"
-                    class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}" min="0">
+                    class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}" required
+                    min="0">
             </div>
 
             {{-- image --}}
@@ -41,7 +42,7 @@
             <div class="form-check form-switch mb-3">
                 <input class="form-check-input @error('visibility') is-invalid @enderror" type="checkbox" role="switch"
                     name="visibility" id="visibility" {{ old('visibility') ? 'checked' : '' }}>
-                <label class="form-check-label" for="visibility">
+                <label class="form-check-label visibility" for="visibility">
                     Visibile?
                 </label>
             </div>

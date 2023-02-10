@@ -20,7 +20,7 @@
             {{-- description --}}
             <div class="mb-3">
                 <label for="description" class="form-label">Descrizione / Ingredienti</label>
-                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror"
+                <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" required
                     maxlength="10000">{{ old('description', $plate->description) }}</textarea>
             </div>
 
@@ -29,7 +29,7 @@
                 <label for="price" class="form-label">Prezzo</label>
                 <input type="number" step="0.01" name="price" id="price"
                     class="form-control @error('price') is-invalid @enderror" value="{{ old('price', $plate->price) }}"
-                    min="0">
+                    required min="0">
             </div>
 
             {{-- image --}}

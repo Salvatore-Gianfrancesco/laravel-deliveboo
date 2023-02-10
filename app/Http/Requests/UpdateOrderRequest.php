@@ -24,12 +24,12 @@ class UpdateOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'client_firstname' => 'required|max:100',
+            /* 'client_firstname' => 'required|max:100',
             'client_lastname' => 'required|max:100',
             'client_address' => 'required|max:255',
             'client_phone' => 'required|max:20',
             'total_amount' => 'required|numeric|between:0,999',
-            'delivery_time' => 'required|date_format:"H:i:s"',
+            'delivery_time' => 'required|date_format:"H:i:s"', */
             'id_delivered' => 'nullable',
         ];
     }
@@ -37,7 +37,7 @@ class UpdateOrderRequest extends FormRequest
     public function messages()
     {
         return [
-            'client_firstname.required' => 'Il nome è obbligatorio',
+            /* 'client_firstname.required' => 'Il nome è obbligatorio',
             'client_firstname.max' => 'Il nome deve essere di massimo :max caratteri',
             'client_lastname.required' => 'Il cognome è obbligatorio',
             'client_lastname.max' => 'Il cognome deve essere di massimo :max caratteri',
@@ -49,7 +49,6 @@ class UpdateOrderRequest extends FormRequest
             'total_amount.numeric' => 'Il prezzo deve essere in formato numerico',
             'total_amount.between' => 'Il prezzo deve essere compreso tra 0 e 999',
             'delivery_time.required' => 'L\'orario di consegna è obbligatorio',
-            'delivery_time.date_format' => 'L\'orario di consegna deve essere nel formato hh:mm:ss',
-        ];
+            'delivery_time.date_format' => 'L\'orario di consegna deve essere nel formato hh:mm:ss', */];
     }
 }

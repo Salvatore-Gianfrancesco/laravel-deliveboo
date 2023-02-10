@@ -11,52 +11,52 @@
             @method('PUT')
 
             {{-- client_firstname --}}
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="client_firstname" class="form-label">Nome</label>
                 <input type="text" name="client_firstname" id="client_firstname"
                     class="form-control @error('client_firstname') is-invalid @enderror"
                     value="{{ old('client_firstname', $order->client_firstname) }}" required maxlength="100">
-            </div>
+            </div> --}}
 
             {{-- client_lastname --}}
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="client_lastname" class="form-label">Cognome</label>
                 <input type="text" name="client_lastname" id="client_lastname"
                     class="form-control @error('client_lastname') is-invalid @enderror"
                     value="{{ old('client_lastname', $order->client_lastname) }}" required maxlength="100">
-            </div>
+            </div> --}}
 
             {{-- client_address --}}
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="client_address" class="form-label">Indirizzo</label>
                 <input type="text" name="client_address" id="client_address"
                     class="form-control @error('client_address') is-invalid @enderror"
                     value="{{ old('client_address', $order->client_address) }}" required maxlength="255">
-            </div>
+            </div> --}}
 
             {{-- client_phone --}}
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="client_phone" class="form-label">Numero di telefono</label>
                 <input type="text" name="client_phone" id="client_phone"
                     class="form-control @error('client_phone') is-invalid @enderror"
                     value="{{ old('client_phone', $order->client_phone) }}" required maxlength="20">
-            </div>
+            </div> --}}
 
             {{-- total_amount --}}
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="total_amount" class="form-label">Prezzo</label>
                 <input type="number" step="0.01" name="total_amount" id="total_amount"
                     class="form-control @error('total_amount') is-invalid @enderror"
                     value="{{ old('total_amount', $order->total_amount) }}" required min="0">
-            </div>
+            </div> --}}
 
             {{-- delivery_time --}}
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="delivery_time" class="form-label">Orario di consegna</label>
                 <input type="time" step="1" name="delivery_time" id="delivery_time"
                     class="form-control @error('delivery_time') is-invalid @enderror"
                     value="{{ old('delivery_time', $order->delivery_time) }}" required>
-            </div>
+            </div> --}}
 
             {{-- is_delivered --}}
             <div class="form-check form-switch mb-3">

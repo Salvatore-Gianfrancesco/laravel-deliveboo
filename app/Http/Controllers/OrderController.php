@@ -17,7 +17,8 @@ class OrderController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $orders = Order::where('restaurant_id', '=', $user->id)->orderByDesc('id')->get();
+        $orders = Order::where('restaurant_id', '=', $user->id)->orderByDesc('id')->paginate(6);
+        // dd($orders);
 
         return view('orders.index', compact('orders'));
     }

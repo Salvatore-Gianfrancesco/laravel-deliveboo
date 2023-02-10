@@ -27,11 +27,9 @@
 
             {{-- types --}}
             <div class="mb-3">
-                <label for="types" class="form-label">Tipo di cucina</label>
+                <label for="types" class="form-label">Seleziona uno o più tipi di cucina</label>
                 <select multiple class="form-select @error('types') is-invalid @enderror" name="types[]" id="types"
                     required>
-                    <option value="" disabled>Seleziona una tipologia</option>
-
                     @forelse ($types as $type)
                         @if ($errors->any())
                             <option value="{{ $type->id }}"
