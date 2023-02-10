@@ -31,7 +31,7 @@ class UpdateRestaurantRequest extends FormRequest
             'piva' => 'required|digits:11',
             'image' => 'nullable|image',
             'min_order' => 'nullable|numeric|between:0,999',
-            'delivery' => 'nullable|max:255',
+            'delivery' => 'nullable|numeric|between:0,999',
             'closing_time' => 'nullable|date_format:"H:i:s"'
         ];
     }
@@ -49,7 +49,8 @@ class UpdateRestaurantRequest extends FormRequest
             'image' => 'L\'immagine inserita non è nel formato corretto',
             'min_order.numeric' => 'L\'ordine minimo deve essere un valore numerico',
             'min_order.between' => 'L\'ordine minimo deve essere compreso tra 0 e 999',
-            'delivery.max' => 'Il tipo di consegna deve essere di massimo :max caratteri',
+            'delivery.numeric' => 'Il costo della consegna deve essere un valore numerico',
+            'delivery.between' => 'Il costo della consegna deve essere compreso tra 0 e 999',
             'closing_time.date_format' => 'L\'orario di chiusura deve essere in formato hh:mm:ss'
         ];
     }

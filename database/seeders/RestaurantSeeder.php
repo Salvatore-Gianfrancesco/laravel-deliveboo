@@ -39,6 +39,7 @@ class RestaurantSeeder extends Seeder
             $new_restaurant->piva = $faker->numerify('###########');
             // $new_restaurant->image
             $new_restaurant->min_order = $faker->randomElement([5, 10, 15, 20]);
+            $new_restaurant->delivery = $faker->randomElement([1, 2, 3, 4]);
             $new_restaurant->closing_time = $faker->randomElement(['22:00:00', '23:00:00', '23:59:00']);
             $new_restaurant->save();
 

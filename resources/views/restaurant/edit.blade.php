@@ -35,11 +35,11 @@
                     @forelse ($types as $type)
                         @if ($errors->any())
                             <option value="{{ $type->id }}"
-                               {{ in_array($type->id, old('types', [])) ? 'selected' : '' }}>
+                                {{ in_array($type->id, old('types', [])) ? 'selected' : '' }}>
                                 {{ $type->name }}</option>
                         @else
                             <option value="{{ $type->id }}"
-                               {{ $restaurant->types->contains($type->id) ? 'selected' : '' }}>
+                                {{ $restaurant->types->contains($type->id) ? 'selected' : '' }}>
                                 {{ $type->name }}</option>
                         @endif
                     @empty
@@ -50,15 +50,16 @@
 
             {{-- address --}}
             <div class="mb-3">
-                <label for="address" class="form-label @error('address') is-invalid @enderror">Indirizzo</label>
-                <input type="text" name="address" id="address" class="form-control"
+                <label for="address" class="form-label">Indirizzo</label>
+                <input type="text" name="address" id="address"
+                    class="form-control @error('address') is-invalid @enderror"
                     value="{{ old('address', $restaurant->address) }}" required maxlength="255">
             </div>
 
             {{-- piva --}}
             <div class="mb-3">
-                <label for="piva" class="form-label @error('piva') is-invalid @enderror">P-IVA</label>
-                <input type="text" name="piva" id="piva" class="form-control"
+                <label for="piva" class="form-label">P-IVA</label>
+                <input type="text" name="piva" id="piva" class="form-control @error('piva') is-invalid @enderror"
                     value="{{ old('piva', $restaurant->piva) }}" required minlength="11" maxlength="11">
             </div>
 
@@ -78,16 +79,18 @@
 
             {{-- min_order --}}
             <div class="mb-3">
-                <label for="min_order" class="form-label @error('min_order') is-invalid @enderror">Ordine minimo</label>
-                <input type="number" step="0.01" name="min_order" id="min_order" class="form-control"
+                <label for="min_order" class="form-label">Ordine minimo</label>
+                <input type="number" step="0.01" name="min_order" id="min_order"
+                    class="form-control @error('min_order') is-invalid @enderror"
                     value="{{ old('min_order', $restaurant->min_order) }}" min="0" max="999">
             </div>
 
             {{-- delivery --}}
             <div class="mb-3">
-                <label for="delivery" class="form-label @error('delivery') is-invalid @enderror">Tipo di consegna</label>
-                <input type="text" name="delivery" id="delivery" class="form-control"
-                    value="{{ old('delivery', $restaurant->delivery) }}" maxlength="255">
+                <label for="delivery" class="form-label">Costo della consegna</label>
+                <input type="number" name="delivery" id="delivery"
+                    class="form-control @error('delivery') is-invalid @enderror"
+                    value="{{ old('delivery', $restaurant->delivery) }}" min="0">
             </div>
 
             {{-- closing_time --}}
