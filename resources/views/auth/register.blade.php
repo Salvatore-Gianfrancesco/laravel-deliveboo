@@ -13,7 +13,7 @@
                         @csrf
 
                         <div class="mb-4 user-box">
-                            <label for="name" class="col-form-label text-md-right">{{ __('Nome') }}</label>
+                            <label for="name" class="col-form-label text-md-right">{{ __('Nome *') }}</label>
 
                             <div class="col">
                                 <input id="name" type="text"
@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="mb-4 user-box">
-                            <label for="email" class=" col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}</label>
+                            <label for="email" class=" col-form-label text-md-right">{{ __('Indirizzo E-Mail *') }}</label>
 
                             <div class="col">
                                 <input id="email" type="email"
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="mb-4 user-box">
-                            <label for="password" class="col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-form-label text-md-right">{{ __('Password *') }}</label>
 
                             <div class="col">
                                 <input id="password" type="password"
@@ -62,7 +62,7 @@
 
                         <div class="mb-4 user-box">
                             <label for="password-confirm"
-                                class="col-form-label text-md-right">{{ __('Conferma Password') }}</label>
+                                class="col-form-label text-md-right">{{ __('Conferma Password *') }}</label>
 
                             <div class="col">
                                 <input id="password-confirm" type="password" class="form-control"
@@ -72,7 +72,7 @@
 
                         <div class="mb-4 user-box">
                             <label for="company_name"
-                                class="col-form-label text-md-right">{{ __('Nome del Ristorante') }}</label>
+                                class="col-form-label text-md-right">{{ __('Nome del Ristorante *') }}</label>
 
                             <div class="col">
                                 <input id="company_name" type="text"
@@ -89,7 +89,7 @@
 
                         <div class="mb-4 user-box">
                             <label for="types"
-                                class="col-form-label text-md-right">{{ __('Seleziona una o più tipi di cucina') }}</label>
+                                class="col-form-label text-md-right">{{ __('Seleziona una o più tipi di cucina *') }}</label>
 
                             <div class="col">
                                 <select multiple class="form-select" name="types[]" id="types" required>
@@ -112,7 +112,7 @@
                         </div>
 
                         <div class="mb-4 user-box">
-                            <label for="address" class="col-form-label text-md-right">{{ __('Indirizzo') }}</label>
+                            <label for="address" class="col-form-label text-md-right">{{ __('Indirizzo *') }}</label>
 
                             <div class="col">
                                 <input id="address" type="text"
@@ -128,7 +128,7 @@
                         </div>
 
                         <div class="mb-4 user-box">
-                            <label for="piva" class="col-form-label text-md-right">{{ __('P-IVA') }}</label>
+                            <label for="piva" class="col-form-label text-md-right">{{ __('P-IVA *') }}</label>
 
                             <div class="col">
                                 <input id="piva" type="text"
