@@ -62,7 +62,7 @@
             <div class="form-check form-switch mb-3">
                 <input class="form-check-input @error('is_delivered') is-invalid @enderror" type="checkbox" role="switch"
                     name="is_delivered" id="is_delivered" {{ old('is_delivered', $order->is_delivered) ? 'checked' : '' }}>
-                <label class="form-check-label" for="is_delivered">
+                <label class="form-check-label text-black" for="is_delivered">
                     Consegnato?
                 </label>
             </div>
