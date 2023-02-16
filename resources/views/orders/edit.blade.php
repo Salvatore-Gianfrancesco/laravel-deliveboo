@@ -68,7 +68,7 @@
             </div>
 
             {{-- submit button --}}
-            <button type="submit" class="btn btn-primary">Add Order</button>
+            <button type="submit" class="btn btn_orange">Modifica</button>
         </form>
     </div>
 @endsection

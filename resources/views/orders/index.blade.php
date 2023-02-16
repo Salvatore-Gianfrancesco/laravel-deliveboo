@@ -51,10 +51,10 @@
 
                         <div class="order_number text-center w-75">
                             <i class="fa-sharp fa-regular fa-file-lines"></i>
-                            <h5>Order #{{ $order->id }}</h5>
+                            <h5>Ordine #{{ $order->id }}</h5>
                             <!-- title -->
                             <span class="py-2 w-100 d-flex justify-content-around">
-                                Delivery Time <strong class="text-end"> {{ $order->delivery_time }}</strong>
+                                Orario di consegna <strong class="text-end"> {{ $order->delivery_time }}</strong>
                             </span>
                             <!-- delivery time -->
                         </div>
@@ -66,19 +66,19 @@
                         <!-- restaurant name -->
                         <div class="delivery d-flex flex-column text-start w-100">
 
-                            <h5 class="text-uppercase fw-bold">Client</h5>
+                            <h5 class="text-uppercase fw-bold">Cliente</h5>
                             <div class="client_info">
                                 <span class="w-100 d-flex justify-content-between">
-                                    Name
+                                    Nome
                                     <strong class="text-end">{{ $order->client_firstname }}
                                         {{ $order->client_lastname }}</strong>
                                 </span>
                                 <span class="w-100 d-flex justify-content-between">
-                                    Address
+                                    Indirizzo
                                     <strong class="text-end">{{ $order->client_address }}</strong>
                                 </span>
                                 <span class="w-100 d-flex justify-content-between">
-                                    Phone
+                                    Telefono
                                     <strong class="text-end">{{ $order->client_phone }}</strong>
                                 </span>
 
@@ -103,7 +103,7 @@
                                     <div class="align-items-center col-11 d-flex justify-content-between p-0">
                                         <div class="d-flex quantity">
                                             <h6 class="mb-0"><strong>{{ $order->plates[0]->name }}</strong>
-                                                <span>x1</span>
+                                                <span>x{{ $order->plates[0]->pivot->quantity }}</span>
                                             </h6>
 
                                         </div>
@@ -121,7 +121,7 @@
                                     <div class="col-11 d-flex align-items-center justify-content-between p-0">
                                         <div class="d-flex quantity">
                                             <h6 class="mb-0"><strong>{{ $order->plates[0]->name }}</strong>
-                                                <span>x1</span>
+                                                <span>x{{ $order->plates[0]->pivot->quantity }}</span>
                                             </h6>
 
                                         </div>
@@ -140,7 +140,7 @@
                                         <div class="d-flex quantity">
                                             <h6 class="mb-0">
                                                 <strong>{{ $order->plates[1]->name }}</strong>
-                                                <span>x1</span>
+                                                <span>x{{ $order->plates[1]->pivot->quantity }}</span>
                                             </h6>
 
                                         </div>
@@ -157,14 +157,14 @@
                         <!-- ORDER MENU -->
                         <div class="price my-4 w-100">
                             <h5 class="d-flex justify-content-between">
-                                <strong>Total</strong> <strong class="numb">{{ $order->total_amount }}&euro;</strong>
+                                <strong>Totale</strong> <strong class="numb">{{ $order->total_amount }}&euro;</strong>
                             </h5>
                         </div>
                         <!-- price -->
                         @if ($order->is_delivered == false)
-                            <div class="rounded-2 btn-delivering" href="#">Delivering</div>
+                            <div class="rounded-2 btn-delivering" href="#">In consegna</div>
                         @else
-                            <div class="rounded-2 btn-completed" href="#">Completed</div>
+                            <div class="rounded-2 btn-completed" href="#">Consegnato</div>
                         @endif
                         <!-- status -->
 
