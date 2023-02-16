@@ -34,7 +34,7 @@
                 @forelse ($order->plates as $plate )
                 <ul>
                     <li>
-                        {{ $plate->name }} x1
+                        {{ $plate->name }} x {{ $plate->pivot->quantity }}
                     </li>
                 </ul>
                     @empty
