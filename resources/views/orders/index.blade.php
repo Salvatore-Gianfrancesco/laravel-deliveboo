@@ -54,19 +54,18 @@
                             <h5>Ordine #{{ $order->id }}</h5>
                             <!-- title -->
                             <span class="py-2 w-100 d-flex justify-content-around">
-                                Orario di consegna <strong class="text-end"> {{ $order->delivery_time }}</strong>
+                                Orario di consegna<strong
+                                    class="text-end">{{ substr($order->delivery_time, 0, 5) }}</strong>
                             </span>
                             <!-- delivery time -->
                         </div>
+
                         <hr class="w-100">
-                        <div class="restaurant_name text-start w-100">
-                            <h4><strong>{{ $order->restaurant->company_name }}</strong></h4>
-                        </div>
-                        <hr class="w-100 line">
+
                         <!-- restaurant name -->
                         <div class="delivery d-flex flex-column text-start w-100">
 
-                            <h5 class="text-uppercase fw-bold">Cliente</h5>
+                            <h5 class="text-uppercase fw-bold">Info Cliente</h5>
                             <div class="client_info">
                                 <span class="w-100 d-flex justify-content-between">
                                     Nome
@@ -84,76 +83,9 @@
 
                             </div>
                         </div>
+
                         <hr class="w-100 line">
-                        <!-- delivery -->
-                        <div class="order_menu w-100">
-                            <div class="order_plates row my-2">
-                                @if (count($order->plates) == 1)
-                                    <div class="align-items-center col-1 d-flex justify-content-end">
-                                        @if ($order->plates[0]->image)
-                                            {{-- <img class="img-fluid icon"
-                                                src="{{ asset('storage/' . $order->plates[0]->image) }}"
-                                                alt="{{ $order->plates[0]->slug }}"> --}}
-                                            <i class="fa-solid fa-circle-check"></i>
-                                        @else
-                                            <i class="fa-solid fa-circle-check"></i>
-                                        @endif
-                                    </div>
-                                    <!-- image -->
-                                    <div class="align-items-center col-11 d-flex justify-content-between p-0">
-                                        <div class="d-flex quantity">
-                                            <h6 class="mb-0"><strong>{{ $order->plates[0]->name }}</strong>
-                                                <span>x{{ $order->plates[0]->pivot->quantity }}</span>
-                                            </h6>
 
-                                        </div>
-                                        <div class="price_order me-3">
-                                            <span
-                                                class="numb"><strong>+{{ $order->plates[0]->price }}&euro;</strong></span>
-                                        </div>
-                                    </div>
-                                    <!-- details -->
-                                @else
-                                    <div class="align-items-center col-1 d-flex justify-content-end">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                    </div>
-                                    <!-- image -->
-                                    <div class="col-11 d-flex align-items-center justify-content-between p-0">
-                                        <div class="d-flex quantity">
-                                            <h6 class="mb-0"><strong>{{ $order->plates[0]->name }}</strong>
-                                                <span>x{{ $order->plates[0]->pivot->quantity }}</span>
-                                            </h6>
-
-                                        </div>
-                                        <div class="price_order me-3">
-                                            <span
-                                                class="numb"><strong>+{{ $order->plates[0]->price }}&euro;</strong></span>
-                                        </div>
-                                    </div>
-                                    <!-- details -->
-
-                                    <div class="align-items-center col-1 d-flex justify-content-end">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                    </div>
-                                    <!-- image -->
-                                    <div class="col-11 d-flex align-items-center justify-content-between p-0">
-                                        <div class="d-flex quantity">
-                                            <h6 class="mb-0">
-                                                <strong>{{ $order->plates[1]->name }}</strong>
-                                                <span>x{{ $order->plates[1]->pivot->quantity }}</span>
-                                            </h6>
-
-                                        </div>
-                                        <div class="price_order me-3">
-                                            <span
-                                                class="numb"><strong>+{{ $order->plates[1]->price }}&euro;</strong></span>
-                                        </div>
-                                    </div>
-                                    <!-- details -->
-                                @endif
-                            </div>
-                        </div>
-                        <hr class="w-100 line">
                         <!-- ORDER MENU -->
                         <div class="price my-4 w-100">
                             <h5 class="d-flex justify-content-between">

@@ -31,15 +31,26 @@
 
             <div class="lead">
                 <strong>Articoli</strong>:
-                @forelse ($order->plates as $plate )
-                <ul>
-                    <li>
-                        {{ $plate->name }} x {{ $plate->pivot->quantity }}
-                    </li>
-                </ul>
-                    @empty
 
-                    @endforelse
+                <div class="table-responsive fs-5">
+                    <table class="table table-light">
+                        <thead>
+                            <tr>
+                                <th scope="col">Piatto</th>
+                                <th scope="col">Quantità</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($order->plates as $plate)
+                                <tr>
+                                    <td scope="row">{{ $plate->name }}</td>
+                                    <td>{{ $plate->pivot->quantity }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
             {{-- items --}}
 
@@ -53,7 +64,7 @@
             {{-- delivery_time --}}
             <div class="lead">
                 <strong>Orario di consegna</strong>:
-                {{ $order->delivery_time }}
+                {{ substr($order->delivery_time, 0, 5) }}
             </div>
 
             {{-- is_delivered --}}
