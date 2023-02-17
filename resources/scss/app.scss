@@ -3,22 +3,24 @@
 @import './partials/login';
 @import './partials/sidebar';
 @import './partials/dashboard';
+@import './partials/ordershow';
+
 
 // @import './partials/sidebar';
 @import './partials/showRestaurant';
 
 
 .btn_orange {
-    background-color: $primary !important;
-    border-color: $primary !important;
-    color: $light !important;
+    background-color: $primary  !important;
+    border-color: $primary  !important;
+    color: $light  !important;
     font-weight: 400 !important;
     padding: 0.5rem;
 
     &:hover {
-        background-color: $primary_soft !important;
-        border-color: $primary_soft !important;
-        color: $light !important;
+        background-color: $primary_soft  !important;
+        border-color: $primary_soft  !important;
+        color: $light  !important;
         font-weight: 400 !important;
 
     }
