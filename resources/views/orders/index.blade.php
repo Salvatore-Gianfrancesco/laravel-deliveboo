@@ -162,7 +162,7 @@
                         </div>
                         <!-- price -->
                         @if ($order->is_delivered == false)
-                            <div class="rounded-2 btn-delivering" href="#">In consegna</div>
+                            <div class="rounded-2 btn-delivering" href="#">In preparazione</div>
                         @else
                             <div class="rounded-2 btn-completed" href="#">Consegnato</div>
                         @endif
