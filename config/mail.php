@@ -53,6 +53,8 @@ return [
             'transport' => 'mailgun',
         ],
 
+        'from' => ['address' => 'pacfoody@gmail.com', 'name' => 'Pac-Food'],
+
         'postmark' => [
             'transport' => 'postmark',
         ],

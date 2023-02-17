@@ -72,6 +72,7 @@
 
                 <hr>
 
+
                 <div class="total_order d-flex justify-content-between">
                     <div>
                         <h3>Total</h3>
@@ -89,20 +90,10 @@
                     @endif
                 </div>
 
+
             </div>
         </div>
 
-        {{-- total_amount --}}
-        {{-- <div class="lead">
-                <strong>Prezzo</strong>:
-                {{ $order->total_amount }} €
-            </div> --}}
-
-        {{-- is_delivered --}}
-        {{-- <div class="lead">
-                <strong>Consegnato</strong>:
-                {{ $order->is_delivered ? 'Si' : 'No' }}
-            </div> --}}
     </div>
     </div>
     </div>

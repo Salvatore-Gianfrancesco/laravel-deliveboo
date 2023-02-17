@@ -54,14 +54,17 @@
                             <h5>Ordine #{{ $order->id }}</h5>
                             <!-- title -->
                             <span class="py-2 w-100 d-flex justify-content-around">
-                                Orario di consegna <strong class="text-end"> {{ $order->delivery_time }}</strong>
+                                Orario di consegna<strong
+                                    class="text-end">{{ substr($order->delivery_time, 0, 5) }}</strong>
                             </span>
                             <!-- delivery time -->
                         </div>
+
                         <hr class="w-100">
+
                         <div class="delivery d-flex flex-column text-start w-100">
 
-                            <h5 class="text-uppercase fw-bold">Cliente</h5>
+                            <h5 class="text-uppercase fw-bold">Info Cliente</h5>
                             <div class="client_info">
                                 <span class="w-100 d-flex justify-content-between">
                                     Nome
@@ -79,8 +82,10 @@
 
                             </div>
                         </div>
+
                         <hr class="w-100 line">
                         <!-- delivery -->
+
 
                         <div class="price my-4 w-100">
                             <h5 class="d-flex justify-content-between">
@@ -89,7 +94,7 @@
                         </div>
                         <!-- price -->
                         @if ($order->is_delivered == false)
-                            <div class="rounded-2 btn-delivering" href="#">In consegna</div>
+                            <div class="rounded-2 btn-delivering" href="#">In preparazione</div>
                         @else
                             <div class="rounded-2 btn-completed" href="#">Consegnato</div>
                         @endif
