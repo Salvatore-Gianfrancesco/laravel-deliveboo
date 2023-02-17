@@ -75,60 +75,78 @@
                     <hr>
 
                 </div>
+                <div class="row">
+                    <div class="col-8 p-4">
+                        <div class="restaurant_info d-flex justify-content-between">
+                            <div>
+                                <div class="lead restaurant_lead fs-6 mb-3">
+                                    <strong>Descrizione</strong>
+                                </div>
+                                <p>{{ $restaurant->description ? $restaurant->description : 'Nessuna descrizione' }}</p>
+                            </div>
+                        </div>
 
-                {{-- image --}}
-                <div class="logo-user">
-                    @if ($restaurant->image)
-                        <img src="{{ asset('storage/' . $restaurant->image) }}" alt="{{ $restaurant->slug }}">
-                    @endif
-                </div>
+                        <hr>
 
-                {{-- description --}}
-                <div class="lead">
-                    <strong>Descrizione</strong>:
-                    {{ $restaurant->description ? $restaurant->description : 'Nessuna descrizione' }}
-                </div>
+                        <div class="delivery d-flex justify-content-between">
+                            <div>
+                                <div class="lead restaurant_lead fs-6 mb-3">
+                                    <strong>Tipi di cucina</strong>
+                                </div>
+                                @if (count($restaurant->types) > 0)
+                                    @foreach ($restaurant->types as $type)
+                                        <span>{{ $type->name }} </span>
+                                    @endforeach
+                                @else
+                                    <span>Nessun tipo registrato</span>
+                                @endif
+                            </div>
+                        </div>
 
-                {{-- types --}}
-                <div class="lead">
-                    <strong>Tipi di cucina</strong>:
-                    @if (count($restaurant->types) > 0)
-                        @foreach ($restaurant->types as $type)
-                            <span>{{ $type->name }} </span>
-                        @endforeach
-                    @else
-                        <span>Nessun tipo registrato</span>
-                    @endif
-                </div>
+                        <hr>
+                        <div>
+                            <div class="lead restaurant_lead fs-6 mb-3">
+                                <strong>Indirizzo</strong>
+                            </div>
+                            <p>{{ $restaurant->address }}</p>
+                        </div>
 
-                {{-- address --}}
-                <div class="lead">
-                    <strong>Indirizzo</strong>:
-                    {{ $restaurant->address }}
-                </div>
+                        <hr>
 
-                {{-- piva --}}
-                <div class="lead">
-                    <strong>P-IVA</strong>:
-                    {{ $restaurant->piva }}
-                </div>
+                        <div>
+                            <div class="lead restaurant_lead fs-6 mb-3">
+                                <strong>P.IVA</strong>
+                            </div>
+                            <p>{{ $restaurant->piva }}</p>
+                        </div>
 
-                {{-- min_order --}}
-                <div class="lead">
-                    <strong>Ordine minimo</strong>:
-                    {{ $restaurant->min_order }} €
-                </div>
+                        <hr>
 
-                {{-- delivery --}}
-                <div class="lead">
-                    <strong>Costo della consegna</strong>:
-                    {{ $restaurant->delivery > 0 ? "$restaurant->delivery €" : 'Consegna gratuita' }}
-                </div>
+                        <div>
+                            <div class="lead restaurant_lead fs-6 mb-3">
+                                <strong>Ordine Minimo</strong>
+                            </div>
+                            <p>{{ $restaurant->min_order }}€</p>
+                        </div>
 
-                {{-- closing_time --}}
-                <div class="lead">
-                    <strong>Orario di chiusura</strong>:
-                    {{ $restaurant->closing_time ? $restaurant->closing_time : 'Non registrato' }}
+                        <hr>
+
+                        <div>
+                            <div class="lead restaurant_lead fs-6 mb-3">
+                                <strong>Costo della consegna</strong>
+                            </div>
+                            <p> {{ $restaurant->delivery > 0 ? "$restaurant->delivery €" : 'Consegna gratuita' }}</p>
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <div class="lead restaurant_lead fs-6 mb-3">
+                                <strong>Orario di chiusura</strong>
+                            </div>
+                            <p> {{ $restaurant->closing_time ? $restaurant->closing_time : 'Non registrato' }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
