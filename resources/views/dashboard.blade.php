@@ -148,60 +148,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- image --}}
-                {{-- <div class="logo-user">
-                    @if ($restaurant->image)
-                        <img src="{{ asset('storage/' . $restaurant->image) }}" alt="{{ $restaurant->slug }}">
-                    @endif
-                </div> --}}
-
-                {{-- description --}}
-                {{-- <div class="lead">
-                    <strong>Descrizione</strong>:
-                    {{ $restaurant->description ? $restaurant->description : 'Nessuna descrizione' }}
-                </div> --}}
-
-                {{-- types --}}
-                {{-- <div class="lead">
-                    <strong>Tipi di cucina</strong>:
-                    @if (count($restaurant->types) > 0)
-                        @foreach ($restaurant->types as $type)
-                            <span>{{ $type->name }} </span>
-                        @endforeach
-                    @else
-                        <span>Nessun tipo registrato</span>
-                    @endif
-                </div> --}}
-
-                {{-- address --}}
-                {{-- <div class="lead">
-                    <strong>Indirizzo</strong>:
-                    {{ $restaurant->address }}
-                </div> --}}
-
-                {{-- piva --}}
-                {{-- <div class="lead">
-                    <strong>P-IVA</strong>:
-                    {{ $restaurant->piva }}
-                </div> --}}
-
-                {{-- min_order --}}
-                {{-- <div class="lead">
-                    <strong>Ordine minimo</strong>:
-                    {{ $restaurant->min_order }} €
-                </div> --}}
-
-                {{-- delivery --}}
-                {{-- <div class="lead">
-                    <strong>Costo della consegna</strong>:
-                    {{ $restaurant->delivery > 0 ? "$restaurant->delivery €" : 'Consegna gratuita' }}
-                </div> --}}
-
-                {{-- closing_time --}}
-                {{-- <div class="lead">
-                    <strong>Orario di chiusura</strong>:
-                    {{ $restaurant->closing_time ? $restaurant->closing_time : 'Non registrato' }}
-                </div> --}}
             </div>
 
 
