@@ -1,0 +1,61 @@
+.col-8 {
+    border-radius: 10px;
+    border: 1px solid $primary;
+}
+
+.user_details {
+    img {
+        width: 50px;
+        object-fit: contain;
+        object-position: top;
+    }
+}
+
+.delivery,
+.order_plates li {
+    img {
+        width: 25px;
+        object-fit: contain;
+
+    }
+}
+
+.order_plates {
+    ul {
+
+        list-style: none
+    }
+}
+
+.price {
+    color: $primary;
+}
+
+.btn-delivering {
+    background-color: rgba(255, 0, 0, 0.118);
+    border: 1px solid red;
+    color: red;
+    padding: 0.3rem 2.5rem;
+
+    &:hover {
+        background-color: red;
+        color: $light;
+    }
+}
+
+.btn-completed {
+    background-color: rgba(0, 255, 47, 0.187);
+    border: 1px solid rgb(31, 193, 118);
+    color: rgb(31, 191, 117);
+    padding: 0.3rem 2.5rem;
+
+    &:hover {
+        background-color: rgb(31, 191, 117);
+        color: $light;
+    }
+}
+
+
+.delivering {
+    width: fit-content;
+}

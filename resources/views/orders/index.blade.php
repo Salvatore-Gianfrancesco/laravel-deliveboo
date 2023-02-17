@@ -62,7 +62,6 @@
 
                         <hr class="w-100">
 
-                        <!-- restaurant name -->
                         <div class="delivery d-flex flex-column text-start w-100">
 
                             <h5 class="text-uppercase fw-bold">Info Cliente</h5>
@@ -85,8 +84,9 @@
                         </div>
 
                         <hr class="w-100 line">
+                        <!-- delivery -->
 
-                        <!-- ORDER MENU -->
+
                         <div class="price my-4 w-100">
                             <h5 class="d-flex justify-content-between">
                                 <strong>Totale</strong> <strong class="numb">{{ $order->total_amount }}&euro;</strong>
