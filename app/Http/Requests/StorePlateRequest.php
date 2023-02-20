@@ -24,7 +24,7 @@ class StorePlateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:plates,name|max:100',
+            'name' => 'required|max:100',
             'description' => 'required|max:10000',
             'price' => 'required|numeric|between:0,999',
             'visibility' => 'nullable',

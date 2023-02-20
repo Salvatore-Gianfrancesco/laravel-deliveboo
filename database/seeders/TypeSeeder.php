@@ -16,7 +16,7 @@ class TypeSeeder extends Seeder
     public function run()
     {
         $types = config('db.types');
-        foreach ($types  as $type) {
+        foreach ($types as $type) {
             $new_type = new Type();
             $new_type->name = $type['name'];
             $new_type->save();

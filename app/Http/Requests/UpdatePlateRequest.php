@@ -25,11 +25,7 @@ class UpdatePlateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
-                'required',
-                Rule::unique('plates')->ignore($this->plate->id),
-                'max:100'
-            ],
+            'name' => 'required|max:100',
             'description' => 'required|max:10000',
             'price' => 'required|numeric|between:0,999',
             'visibility' => 'nullable',

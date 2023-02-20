@@ -24,9 +24,9 @@ class PlateSeeder extends Seeder
             $new_plate->name = $plate['name'];
             $new_plate->slug = Str::slug($plate['name']);
             $new_plate->description = $plate['description'];
-            $new_plate->price = $faker->randomFloat(2, 5, 15);
+            $new_plate->price = $plate['price'];
             $new_plate->visibility = true;
-            // $new_plate->image
+            // $new_plate->image;
             $new_plate->save();
         }
     }
