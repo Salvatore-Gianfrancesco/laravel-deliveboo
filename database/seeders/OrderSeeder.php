@@ -16,15 +16,9 @@ class OrderSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             $order = new Order();
-
-            if ($i <= 10) {
-                $order->restaurant_id = '1';
-            } else {
-                $order->restaurant_id = '2';
-            }
-
+            $order->restaurant_id = '1';
             $order->client_firstname = $faker->firstName();
             $order->client_lastname = $faker->lastName();
             $order->client_address = $faker->streetAddress();
@@ -34,13 +28,12 @@ class OrderSeeder extends Seeder
             $order->is_delivered = false;
             $order->save();
 
-            if ($i <= 10) {
-                $plates = $faker->randomElements([1, 2, 3, 4, 5], 2);
-            } else {
-                $plates = $faker->randomElements([6, 7, 8, 9, 10], 2);
+            $plates = $faker->randomElements([1, 2, 3, 4, 5, 6, 7, 8, 9], 2);
+            $quantity = $faker->randomElements([1, 2, 3], 2);
+
+            for ($j = 0; $j < count($plates); $j++) {
+                $order->plates()->attach($plates[$j], array('quantity' => $quantity[$j]));
             }
-            $quantity = $faker->randomElement([1, 2, 3]);
-            $order->plates()->attach($plates, array('quantity' => $quantity));
         }
     }
 }

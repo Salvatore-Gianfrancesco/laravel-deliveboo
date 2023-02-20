@@ -126,7 +126,7 @@
                             <div class="lead restaurant_lead fs-6 mb-3">
                                 <strong>Ordine Minimo</strong>
                             </div>
-                            <p>{{ $restaurant->min_order }}€</p>
+                            <p>{{ $restaurant->min_order }} €</p>
                         </div>
 
                         <hr>
